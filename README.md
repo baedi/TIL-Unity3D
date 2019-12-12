@@ -104,3 +104,26 @@
 	- 트리거에 관한 기본 이해
 
 -----------------------------------------
+### 009-1. 캐릭터 애니메이션 조작하기 (part 1)
+ ![character_image](./Script/009/charmodel.PNG)
+ * 설명 : 플레이어에 캐릭터 모델을 적용시켜서 가만히 있는 동작을 연출하도록 하기
+ * 사용 방법 : 
+	 1. 에셋스토어에서 "Character Pack " Free Sample" (SUPERCYAN) 을 다운받아 임포트한다.
+	 2. 받은 팩의 Models폴더에서 free_male_1을 선택하고 Scale Factor를 조절한다.
+	 3. (Scale Factor를 조절했을 경우) Animations 폴더에서 common_people@mpose의 Scale Factor도 똑같이 조절한다.
+	 4. Models에서 free_male_1을 하이러시에 둔다. (조작 관련 스크립트나 Player 전용 오브젝트도 준비해서 적절히 합해준다.)
+	 5. Materials/High Quality 폴더에 있는 텍스쳐 파일을 이용하여 캐릭터의 몸체에 붙여준다.
+	 6. 프로젝트 폴더에서 마우스 우클릭 -> Create -> Animator Controller를 누른다. (이름은 PlayerControlAnimation으로 함)
+	 7. PlayerControlAnimation 컨트롤러 파일을 하이러시에 있는 free_male_1의 컴포넌트에 적용시킨다.
+	 8. 해당 Animator 컴포넌트의 Avartar에서 빈 칸 옆에 있는 동그란 버튼을 눌러서 등장하는 FBX 파일을 적용시킨다.
+	 9. PlayerControlAnimation 컨트롤러 파일을 오픈한다.
+	10. Animations/common_people@idle 내에서 idle 파일을 해당 컨트롤러의 BaseLayer에 드래그 앤 드롭한다.
+	11. 실행을 눌러 캐릭터가 idle 동작을 수행하는지 확인한다.
+
+ * 배운 내용 : 
+	- 에셋 스토어에서 캐릭터 모델링을 받아오는 방법
+	- 외부에서 가져온 모델링의 크기를 직접 Scale 속성에서 수정하지 않고 크기를 변경하는 방법
+	- 모델링에 대한 크기 변경 후 애니메이션 사용 시, FBX 모델링에 대한 크기도 변경해야 되는 점.
+	- 간단하게 애니메이션을 적용시키는 방법
+
+-----------------------------------------
