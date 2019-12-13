@@ -126,4 +126,46 @@
 	- 모델링에 대한 크기 변경 후 애니메이션 사용 시, FBX 모델링에 대한 크기도 변경해야 되는 점.
 	- 간단하게 애니메이션을 적용시키는 방법
 
+ * 참고 자료 : https://jungmonster.tistory.com/194
+
+-----------------------------------------
+### 009-2. 캐릭터 애니메이션 조작하기 (part 2)
+ ![character_image](./Script/009/Animator.PNG)
+ * 설명 : Animator를 구성하고, 키를 누르면 달리는 동작 연출시키기
+ * 사용 방법 : 
+	1. PlayerControlAnimation 파일을 오픈한다.
+	2. 해당 Animator의 Base Layer에서 다음과 같은 애니메이션 동작을 추가한다.
+		- Animations/common_people@backwards-run\backwards-run
+		- Animations/common_people@run\run
+	3. idle 레이어를 우클릭하여 Make Transision을 이용하여 다른 레이어와 연결시킨다.
+	4. 다른 레이어의 경우에도 그림과 같이 연결시켜준다.
+	5. 모든 화살표(Transitions)에 대하여, 화살표를 클릭하여 Inspector 뷰의 Has Exit Time을 해제한다.
+	6. Animator의 Parameters에서 다음과 같은 변수들을 추가한다.
+		- isWalk (자료형 : bool)
+		- isBackWalk (자료형 : bool)
+	7. 각 화살표(Transitions)에 대하여 Inspector의 Conditions에서 다음과 같이 설정해준다.
+		- (idle -> run)
+			-  isWalk가 true이면 동작하도록 설정
+
+		- (idle -> backwards-run)
+			- isBackWalk가 true이면 동작하도록 설정
+
+		- (run -> backwards-run)
+			- isWalk가 false, isBackWalk가 true이면 동작하도록 설정
+
+		- (run -> idle) , (backwards-run -> idle)
+			- isWalk와 isBackWalk가 모두 false이면 동작하도록 설정
+
+		- (backwards-run -> run)
+			- isWalk가 true, isBackWalk가 false이면 동작하도록 설정
+
+	8. CharacterAnimation.cs 파일을 해당 캐릭터 오브젝트에 적용시킨다.
+
+ * 배운 내용 : 
+	- Animator 컴포넌트를 다루는 방법에 관한 이해
+	- Animator 컴포넌트의 파라미터를 이용하는 방법에 관한 이해 
+	- Animator를 구성하는 방법에 관한 이해
+
+ * 참고 자료 : https://m.blog.naver.com/game_studyz/220984736956
+
 -----------------------------------------
