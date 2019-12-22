@@ -1,5 +1,5 @@
 ### 009-1. 캐릭터 애니메이션 조작하기 (part 1)
- ![character_image](./Script/009/charmodel.PNG)
+ ![character_image](./charmodel.PNG)
  * 설명 : 플레이어에 캐릭터 모델을 적용시켜서 가만히 있는 동작을 연출하도록 하기
  * 사용 방법 : 
 	 1. 에셋스토어에서 "Character Pack " Free Sample" (SUPERCYAN) 을 다운받아 임포트한다.
@@ -24,7 +24,7 @@
 
 -----------------------------------------
 ### 009-2. 캐릭터 애니메이션 조작하기 (part 2)
- ![character_image](./Script/009/Animator.PNG)
+ ![character_image](./Animator.PNG)
  * 설명 : Animator를 구성하고, 키를 누르면 달리는 동작 연출시키기
  * 사용 방법 : 
 	1. PlayerControlAnimation 파일을 오픈한다.
@@ -64,7 +64,7 @@
 
 -----------------------------------------
 ### 009-3. 캐릭터 애니메이션 조작하기 (part 2)
- ![character_image](./Script/009/Animator2.PNG)
+ ![character_image](./Animator2.PNG)
  * 설명 : 
  * 사용 방법 : 
 	1. PlayerControlAnimation 파일을 오픈한다.

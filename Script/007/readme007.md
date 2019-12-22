@@ -1,5 +1,5 @@
 ### 007. CameraMove3.cs
- ![camera_move_3](./Script/007/example_007_0.PNG)
+ ![camera_move_3](./example_007_0.PNG)
  * 스크립트 설명 : 기존 CameraMove2 스크립트에 1인칭, 3인칭 컨트롤이 추가된 스크립트
  * 사용 방법 : 
 	1. 기존 CameraMove2 스크립트가 적용된 카메라 오브젝트를 선택하여 해당 스크립트를 지운다.

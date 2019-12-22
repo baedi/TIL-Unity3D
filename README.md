@@ -18,5 +18,5 @@
  - [008. 트리거 충돌 관련 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/008/readme008.md)
  - [009. 캐릭터 애니메이터 다루기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/009/readme009.md)
  - [010. 캐릭터를 조금 현실감있게 조작하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/010/readme010.md)
-
+ - [011. 벽 충돌시 움직임 제한하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/011/readme011.md)
 -----------------------------------------
