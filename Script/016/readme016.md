@@ -24,3 +24,8 @@
  #### Bullet.cs
 	- 코루틴 함수를 이용한 타이머 추가 (오브젝트 파괴 용도)
 	- 발사 지점 (오브젝트 생성 지점)을 반환시키는 메소드 추가 (반사각을 구하기 위함)
+
+
+ * 참고 자료 : 
+	- https://hyunity3d.tistory.com/574
+	- https://gall.dcinside.com/board/view/?id=programming&no=773249
