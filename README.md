@@ -26,5 +26,6 @@
  - [016. 반사각을 이용한 물체 반사 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/016/readme016.md)
  - [017. 물체 밀어내기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/017/readme017.md)
  - [018. 트리거를 이용한 물체의 UI 나타내기 및 플레이어 바라보기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/018/readme018.md) 
- 
+ - [019. 플레이어 따라다니기 & 시선 부드럽게 전환하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/019/readme019.md)
+
 -----------------------------------------

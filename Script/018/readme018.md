@@ -31,3 +31,9 @@
  - (12/31) UI의 Rect Transform 컴포넌트에 접근하는 방법
  - (12/31) 특정 물체를 계속 바라보게 만드는 방법
  - (12/31) 플레이어와 물체 간의 거리를 계산하는 방법
+
+
+#### 참고 자료
+ - [특정 대상 바라보기](https://legacy.tistory.com/81)
+ - [거리 관련 오브젝트 반응](https://funfunhanblog.tistory.com/29)
+ - [퍼센트 계산법](http://mwultong.blogspot.com/2008/01/percent-formula.html)
