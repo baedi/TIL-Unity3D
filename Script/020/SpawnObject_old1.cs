@@ -2,17 +2,14 @@
 using System.Collections;
 
 
-public class SpawnObject : MonoBehaviour {
+public class SpawnObject_old1 : MonoBehaviour {
 
     // 변수               
     private float trigScaleX;
     private float trigScaleZ;
 
     private float randomR;
-    private float randomG;
     private float randomB;
-
-    public float ballLifeTime = 60.0f;
 
     // 초기화              
     private void Start() {
@@ -69,30 +66,5 @@ public class SpawnObject : MonoBehaviour {
         tempMr.material.DisableKeyword("_ALPHABLEND_ON");
         tempMr.material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
         tempMr.material.renderQueue = 3000;
-
-        // 내부 클래스(ObjectLifeTime) 컴포넌트 추가                     
-        obj.AddComponent<ObjectLifeTime>();
-        obj.GetComponent<ObjectLifeTime>().setLifeTime(ballLifeTime);
-        obj.GetComponent<ObjectLifeTime>().startCoroutine();
-
-    }
-}
-
-// 내부 클래스 : 이 컴포넌트를 추가한 오브젝트는 일정 시간 지나면 사라지게 만드는 클래스    
-public class ObjectLifeTime : MonoBehaviour {
-
-    // 변수                
-    private float lifetime;
-
-    // 시간 초기화         
-    public void setLifeTime(float time) { lifetime = time; }
-
-    // 코루틴 동작 제어    
-    public void startCoroutine() { StartCoroutine(lifeTimeManager()); }
-
-    // 코루틴 동작 : 일정 시간 지나면 오브젝트 파괴   
-    private IEnumerator lifeTimeManager() {
-        yield return new WaitForSeconds(lifetime);
-        Destroy(this.gameObject);
     }
 }
