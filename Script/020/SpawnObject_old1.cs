@@ -9,6 +9,7 @@ public class SpawnObject_old1 : MonoBehaviour {
     private float trigScaleZ;
 
     private float randomR;
+    private float randomG;
     private float randomB;
 
     // 초기화              
