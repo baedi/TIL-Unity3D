@@ -30,5 +30,6 @@
 
 ## 목록 (VR)
 - [VR000. VR 개발환경 설정](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR000/readmeVR000.md)
+- [VR001. 배경화면 설정, 컨트롤러 조작 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR001/readmeVR001.md)
 
 -----------------------------------------
