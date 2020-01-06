@@ -35,6 +35,6 @@
 
 
 #### 참고 자료
-[Autumn Mountain 에셋](https://assetstore.unity.com/packages/3d/environments/landscapes/autumn-mountain-52251)
-[Skybox를 이용한 배경 적용 방법](https://you-rang.tistory.com/133)
-[OVRInput](https://developer.oculus.com/documentation/unity/latest/concepts/unity-ovrinput/)
+- [Autumn Mountain 에셋](https://assetstore.unity.com/packages/3d/environments/landscapes/autumn-mountain-52251)
+- [Skybox를 이용한 배경 적용 방법](https://you-rang.tistory.com/133)
+- [OVRInput](https://developer.oculus.com/documentation/unity/latest/concepts/unity-ovrinput/)
