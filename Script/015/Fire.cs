@@ -19,7 +19,7 @@ public class Fire : MonoBehaviour {
         // 마우스를 누를 경우                   
         if (Input.GetMouseButtonDown(0)) {
             // 발사 위치 설정             
-            Vector3 temp = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.0f);
+            Vector3 temp = transform.position + transform.forward * 1.0f;
 
             // 오브젝트 복사 (총알 생성)  
             Instantiate(bullet, temp, transform.rotation);
