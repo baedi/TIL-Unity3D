@@ -28,6 +28,7 @@
 - [020. 난수를 이용하여 물체 생성 및 Material 조작, 내부 클래스 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/020/readme020.md)
 - [021. LineRender를 이용하여 선 그리기](https://github.com/baedi/TIL-Unity3D/blob/master/Script/021/readme021.md)
 - [022. 플레이어가 바라본 오브젝트의 지점 표시하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/022/readme022.md)
+- [023. 블렌더를 이용한 캐릭터 제작/애니메이팅 유니티 적용 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/023/readme023.md)
 
 ## 목록 (VR)
 - [VR000. VR 개발환경 설정](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR000/readmeVR000.md)
