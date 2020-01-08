@@ -4,6 +4,7 @@
 
 #### 스크립트 설명
 - FPS 방향키를 이용하여 오브젝트를 간단하게 조작하고, 달리기 애니메이션 동작 여부를 결정하는 스크립트.
++ 플레이어의 이동이 컴퓨터의 사양(프레임)에 영향을 받지 않도록 Time.deltaTime 사용.
 
 
 #### 사용 방법
@@ -52,6 +53,7 @@
 #### 배운 내용
 - 블랜더를 이용하여 캐릭터 만드는 방법 (기본)
 - Transform, Animator 관련 기능(메소드) 복습
++ Time.deltaTime에 관한 이해
 
 
 #### 참고 사항
@@ -62,3 +64,4 @@
 #### 참고 자료
 - [블랜더 선 부드럽게 만들기](https://itadventure.tistory.com/140)
 - [블랜더 애니메이션 만들기](https://dlgnlfus.tistory.com/326)
+- [Time.deltaTime](http://maedoop.dothome.co.kr/641/)

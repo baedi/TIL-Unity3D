@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerRun : MonoBehaviour {
 
     // 변수            
-    public float runSpeed = 0.01f;      // 이동 속도    
-    public float rotateSpeed = 0.1f;    // 회전 속도    
-    public float jumpPower = 0.12f;     // 점프력       
+    public float runSpeed = 6f;      // 이동 속도    
+    public float rotateSpeed = 90f;    // 회전 속도    
+    public float jumpPower = 50f;     // 점프력       
 
     private GameObject cameraObj;       // 카메라 오브젝트      
     private Animator animatorManager;   // Animator 컴포넌트    
@@ -15,7 +15,7 @@ public class PlayerRun : MonoBehaviour {
     
 
     // 초기화          
-    void Start() {
+    void Awake() {
         // Animator 컴포넌트 가져오기                               
         animatorManager = GetComponentInChildren<Animator>();
 
@@ -32,16 +32,16 @@ public class PlayerRun : MonoBehaviour {
     }
 
     // 루프            
-    void Update() {
+    void FixedUpdate() {
 
         // 플레이어 이동(전/후진) 관련 반복문         
         if (Input.GetKey(KeyCode.W)) {
-            transform.Translate(Vector3.forward * runSpeed);
+            transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
             animatorManager.SetBool("isRun", true);
         }
 
         else if (Input.GetKey(KeyCode.S)) {
-            transform.Translate(Vector3.back * runSpeed);
+            transform.Translate(Vector3.back * runSpeed * Time.deltaTime);
             animatorManager.SetBool("isRun", true);
         }
 
@@ -52,15 +52,15 @@ public class PlayerRun : MonoBehaviour {
 
         // 플레이어 회전(좌/우) 관련 조건문            
         if (Input.GetKey(KeyCode.A))
-            transform.Rotate(Vector3.down * rotateSpeed);
+            transform.Rotate(Vector3.down * rotateSpeed * Time.deltaTime);
 
         else if (Input.GetKey(KeyCode.D))
-            transform.Rotate(Vector3.up * rotateSpeed);
+            transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
 
 
         // 플레이어 점프 관련 조건문                   
         if (Input.GetKey(KeyCode.Space)) {
-            rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * jumpPower * Time.deltaTime, ForceMode.Impulse);
         }
         
     }
