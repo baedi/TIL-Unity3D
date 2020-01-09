@@ -30,5 +30,5 @@
 
 
 #### 참고 자료 
-	- [포물선 그리기](https://lovelyseekerclaire.tistory.com/26)
-	- [LineRenderer.SetPosition index out of bounds 에러 해결방법](https://answers.unity.com/questions/1341993/linerenderersetposition-index-out-of-bounds-help.html)
+ - [포물선 그리기](https://lovelyseekerclaire.tistory.com/26)
+ - [LineRenderer.SetPosition index out of bounds 에러 해결방법](https://answers.unity.com/questions/1341993/linerenderersetposition-index-out-of-bounds-help.html)
