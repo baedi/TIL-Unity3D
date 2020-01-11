@@ -31,6 +31,7 @@
 - [023. 블렌더를 이용한 캐릭터 제작/애니메이팅 유니티 적용 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/023/readme023.md)
 - [024. 플레이어가 바라본 지점으로 포물선 그리기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/024/readme024.md)
 - [025. 개선된 플레이어 이동/회전/점프 & 카메라의 부드러운 이동/회전 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/025/readme025.md)
+- [026. 적 생성 및 트리거를 이용한 적 이동 로직 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/026/readme026.md)
 
 ## 목록 (VR)
 - [VR000. VR 개발환경 설정](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR000/readmeVR000.md)

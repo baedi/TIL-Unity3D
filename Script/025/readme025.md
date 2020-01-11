@@ -1,4 +1,4 @@
-### 024. DrawParabola.cs, RaycastCam.cs
+### 025. DrawParabola.cs, RaycastCam.cs
 
  ![LerpMove](./LerpMove.gif)
 
