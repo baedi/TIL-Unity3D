@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyMove : MonoBehaviour {
 
@@ -45,12 +46,19 @@ public class EnemyMove : MonoBehaviour {
 
     private void nextCheckPointSet() {
         nextMovePoint++;
-        Vector3 triggerSize = checkPoint[nextMovePoint].GetComponent<BoxCollider>().size / 2.0f;
 
-        float randX = Random.Range(checkPoint[nextMovePoint].transform.position.x + (-triggerSize.x),
+        Vector3 triggerSize;
+        try {
+            triggerSize = checkPoint[nextMovePoint].GetComponent<BoxCollider>().size / 2.0f;
+        }
+
+        catch (IndexOutOfRangeException) { return; }
+
+
+        float randX = UnityEngine.Random.Range(checkPoint[nextMovePoint].transform.position.x + (-triggerSize.x),
                                     checkPoint[nextMovePoint].transform.position.x + triggerSize.x);
 
-        float randZ = Random.Range(checkPoint[nextMovePoint].transform.position.z + (-triggerSize.z),
+        float randZ = UnityEngine.Random.Range(checkPoint[nextMovePoint].transform.position.z + (-triggerSize.z),
                                     checkPoint[nextMovePoint].transform.position.z + triggerSize.z);
 
         targetVector = new Vector3(randX, checkPoint[nextMovePoint].transform.position.y, randZ);
