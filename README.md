@@ -33,8 +33,11 @@
 - [025. 개선된 플레이어 이동/회전/점프 & 카메라의 부드러운 이동/회전 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/025/readme025.md)
 - [026. 적 생성 및 트리거를 이용한 적 이동 로직 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/026/readme026.md)
 
+-----------------------------------------
+
 ## 목록 (VR)
 - [VR000. VR 개발환경 설정](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR000/readmeVR000.md)
 - [VR001. 배경화면 설정, 컨트롤러 조작 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR001/readmeVR001.md)
+- [VR002. VR 컨트롤러를 이용한 총알 발사, 궤적 효과 그리기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR002/readmeVR002.md)
 
 -----------------------------------------
