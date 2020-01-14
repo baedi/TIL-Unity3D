@@ -39,5 +39,6 @@
 - [VR000. VR 개발환경 설정](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR000/readmeVR000.md)
 - [VR001. 배경화면 설정, 컨트롤러 조작 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR001/readmeVR001.md)
 - [VR002. VR 컨트롤러를 이용한 총알 발사, 궤적 효과 그리기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR002/readmeVR002.md)
+- [VR003. 총알 발사 사운드 구현, UI 프로그레스 바 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR003/readmeVR003.md)
 
 -----------------------------------------
