@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunShoot : MonoBehaviour {
+public class GunShoot_old1 : MonoBehaviour {
 
     // 변수           
     private LineRenderer lineComponent;
@@ -11,8 +11,6 @@ public class GunShoot : MonoBehaviour {
     private int currentBullet;
     private bool isReloading;
 
-    private GameObject progressEmpty;
-    private GameObject progressFill;
     private new AudioSource audio;
 
     public float lineDistance = 1;
@@ -38,12 +36,6 @@ public class GunShoot : MonoBehaviour {
         // 장전 수, 리로드 관련 설정            
         currentBullet = MAX_BULLET;
         isReloading = false;
-
-        // 프로그레스 바 관련 오브젝트 가져오기 
-        progressEmpty = GameObject.Find("ProgressBarEmpty");
-        progressFill = GameObject.Find("ProgressBarFill");
-        progressEmpty.SetActive(false);
-        progressFill.SetActive(false);
 
         // 오디오 컴포넌트 추가/초기화          
         audio = this.gameObject.AddComponent<AudioSource>();
@@ -84,9 +76,6 @@ public class GunShoot : MonoBehaviour {
                 // 총알 수 줄이기                    
                 currentBullet--;
 
-                // UI 효과                           
-                GameObject.Find("StatusUI").GetComponent<StatusScreen>().textEvent(currentBullet + " / " + MAX_BULLET);
-                GameObject.Find("StatusUI").GetComponent<StatusScreen>().setColor(currentBullet == 0 ? Color.red : Color.yellow);
             }
 
             // 총알이 없는 경우         
@@ -115,37 +104,15 @@ public class GunShoot : MonoBehaviour {
         // 장전 중 활성화                                   
         isReloading = true;
 
-        // 프로그레스 바 UI 활성화                          
-        progressEmpty.SetActive(true);
-        progressFill.SetActive(true);
-
-        // Rect Transform 컴포넌트 가져오기 및 초기화       
-        RectTransform temp = progressFill.GetComponent<RectTransform>();
-        temp.localScale = new Vector3(0, 1, 1);
-
         // 장전 사운드                                      
         audio.clip = reloadSound;
         audio.Play();
 
-        // 장전중 효과                                      
-        while (temp.localScale.x < 1.0f) {
-            temp.localScale += new Vector3(0.025f, 0, 0);
-            yield return new WaitForSeconds(0.0375f);
-        }
-
         // 장탄 수를 최대치로 돌려놓음  
         currentBullet = MAX_BULLET;
 
-        // UI 효과                      
-        GameObject.Find("StatusUI").GetComponent<StatusScreen>().textEvent(currentBullet + " / " + MAX_BULLET);
-        GameObject.Find("StatusUI").GetComponent<StatusScreen>().setColor(Color.green);
-
         // 장전 중 비활성화                                 
         isReloading = false;
-
-        //프로그레스 바 UI 비활성화                         
-        progressEmpty.SetActive(false);
-        progressFill.SetActive(false);
 
         yield return null;
     }
