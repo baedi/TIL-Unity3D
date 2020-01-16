@@ -20,7 +20,7 @@
 - [012. 충돌(가변)값을 이용한 콩콩이 만들기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/012/readme012.md)
 - [013. RayCast를 이용한 물체 인식 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/013/readme013.md)
 - [014. 버튼을 누르면 엘리베이터 작동시키기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/014/readme014.md)
-- [015. 총알 발사 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/015/readme015.md)
+- [015. 총알 발사 & 부위별 충돌/트리거 감지 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/015/readme015.md)
 - [016. 반사각을 이용한 물체 반사 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/016/readme016.md)
 - [017. 물체 밀어내기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/017/readme017.md)
 - [018. 트리거를 이용한 물체의 UI 나타내기 및 플레이어 바라보기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/018/readme018.md) 
