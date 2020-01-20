@@ -33,6 +33,7 @@
 - [025. 개선된 플레이어 이동/회전/점프 & 카메라의 부드러운 이동/회전 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/025/readme025.md)
 - [026. 적 생성 및 트리거를 이용한 적 이동 로직 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/026/readme026.md)
 - [027. 점프, 중력 활용 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/027/readme027.md)
+- [028. 나무(오브젝트) Grow 시스템 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/028/readme028.md)
 
 -----------------------------------------
 
