@@ -34,6 +34,7 @@
 - [026. 적 생성 및 트리거를 이용한 적 이동 로직 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/026/readme026.md)
 - [027. 점프, 중력 활용 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/027/readme027.md)
 - [028. 나무(오브젝트) Grow 시스템 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/028/readme028.md)
+- [029. Mesh Filter를 이용한 Mesh 변형 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/029/readme029.md)
 
 -----------------------------------------
 
