@@ -45,5 +45,6 @@
 - [VR003. 총알 발사 사운드 구현, UI 프로그레스 바 구현 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR003/readmeVR003.md)
 - [VR004. 컨트롤러 원형 터치를 이용한 이동, 점프 구현 테스트]( https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR004/readmeVR004.md)
 - [VR005. 플레이어가 바라보는 방향으로 이동하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR005/readmeVR005.md)
+- [VR006. 컨트롤러에 레이저 추가 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR006/readmeVR006.md)
 
 -----------------------------------------
