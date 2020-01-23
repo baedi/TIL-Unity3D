@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class VRPointer : MonoBehaviour {
 
     // 변수        
-    private LineRenderer lineRendererComp;  // 라인 렌더러    
-    private RaycastHit raycastHit;          // 충돌 감지 전용 
+    private LineRenderer lineRendererComp;      // 라인 렌더러                 
+    private RaycastHit raycastHit;              // 충돌 감지 전용              
+    private GameObject currentButtonRay;        // 최근 감지된 버튼 오브젝트   
 
     public float raycastDistance = 50f;     // 감지 거리      
 
@@ -38,10 +41,40 @@ public class VRPointer : MonoBehaviour {
         // 충돌 감지 시      
         if (Physics.Raycast(transform.position, transform.forward, out raycastHit, raycastDistance)) {
             lineRendererComp.SetPosition(1, raycastHit.point);
+
+            // 충돌 객체의 태그가 Button인 경우        
+            if (raycastHit.collider.gameObject.CompareTag("Button")) {
+                // 포인터 in 처리        
+                raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
+                currentButtonRay = raycastHit.collider.gameObject;
+            }
         }
 
         else {
             lineRendererComp.SetPosition(1, transform.position + (transform.forward * raycastDistance));
+
+            // 최근 감지된 오브젝트가 Button인 경우    
+            if(currentButtonRay != null) {
+                // 포인터 out 처리       
+                currentButtonRay.GetComponent<Button>().OnPointerExit(null);
+                currentButtonRay = null;
+            }
         }
     }
+
+
+    // 루프 2         
+    private void LateUpdate() {
+        // 버튼을 누를 경우        
+        if (OVRInput.GetDown(OVRInput.Button.One)) {
+            lineRendererComp.material.color = new Color(255, 255, 255, 0.5f);
+        }
+
+        // 버튼을 뗄 경우          
+        else if (OVRInput.GetUp(OVRInput.Button.One)) {
+            lineRendererComp.material.color = new Color(0, 195, 255, 0.5f);
+        }
+    }
+
+
 }
