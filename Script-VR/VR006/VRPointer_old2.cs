@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VRPointer : MonoBehaviour {
+public class VRPointer_old2 : MonoBehaviour {
 
     // 변수        
     private LineRenderer lineRendererComp;      // 라인 렌더러                 
@@ -44,17 +44,9 @@ public class VRPointer : MonoBehaviour {
 
             // 충돌 객체의 태그가 Button인 경우        
             if (raycastHit.collider.gameObject.CompareTag("Button")) {
-
-                // 클릭할 경우           
-                if (OVRInput.GetDown(OVRInput.Button.One)){
-                    raycastHit.collider.gameObject.GetComponent<Button>().onClick.Invoke();
-                }
-
-                else {
-                    // 포인터 in 처리        
-                    raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
-                    currentButtonRay = raycastHit.collider.gameObject;
-                }
+                // 포인터 in 처리        
+                raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
+                currentButtonRay = raycastHit.collider.gameObject;
             }
         }
 
