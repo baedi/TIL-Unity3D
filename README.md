@@ -47,7 +47,8 @@
 - [VR004. 컨트롤러 원형 터치를 이용한 이동, 점프 구현 테스트]( https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR004/readmeVR004.md)
 - [VR005. 플레이어가 바라보는 방향으로 이동하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR005/readmeVR005.md)
 - [VR006. 컨트롤러에 레이저 추가 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR006/readmeVR006.md)
-- [VR006-2. Raycast를 이용한 UI 버튼 감지하기] (https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR006/readmeVR006.md)
-- [VR007. (OculusGO 전용) 고개 숙일 시 카메라 위치 조절하기 테스트] (https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR007/readmeVR007.md)
+- [VR006-2. Raycast를 이용한 UI 버튼 감지하기](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR006/readmeVR006.md)
+- [VR007. (OculusGO 전용) 고개 숙일 시 카메라 위치 조절하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR007/readmeVR007.md)
+- [VR008. 컨트롤러 앞으로 이동시키기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR008/readmeVR008.md)
 
 -----------------------------------------
