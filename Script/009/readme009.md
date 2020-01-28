@@ -1,7 +1,13 @@
 ### 009-1. 캐릭터 애니메이션 조작하기 (part 1)
+
  ![character_image](./charmodel.PNG)
- * 설명 : 플레이어에 캐릭터 모델을 적용시켜서 가만히 있는 동작을 연출하도록 하기
- * 사용 방법 : 
+
+
+#### 설명 
+	- 플레이어에 캐릭터 모델을 적용시켜서 가만히 있는 동작을 연출하도록 하기
+
+
+#### 사용 방법 
 	 1. 에셋스토어에서 "Character Pack " Free Sample" (SUPERCYAN) 을 다운받아 임포트한다.
 	 2. 받은 팩의 Models폴더에서 free_male_1을 선택하고 Scale Factor를 조절한다.
 	 3. (Scale Factor를 조절했을 경우) Animations 폴더에서 common_people@mpose의 Scale Factor도 똑같이 조절한다.
@@ -14,19 +20,27 @@
 	10. Animations/common_people@idle 내에서 idle 파일을 해당 컨트롤러의 BaseLayer에 드래그 앤 드롭한다.
 	11. 실행을 눌러 캐릭터가 idle 동작을 수행하는지 확인한다.
 
- * 배운 내용 : 
+#### 배운 내용 
 	- 에셋 스토어에서 캐릭터 모델링을 받아오는 방법
 	- 외부에서 가져온 모델링의 크기를 직접 Scale 속성에서 수정하지 않고 크기를 변경하는 방법
 	- 모델링에 대한 크기 변경 후 애니메이션 사용 시, FBX 모델링에 대한 크기도 변경해야 되는 점.
 	- 간단하게 애니메이션을 적용시키는 방법
 
- * 참고 자료 : https://jungmonster.tistory.com/194
+
+#### 참고 자료 
+- [애니메이터 사용](https://jungmonster.tistory.com/194)
 
 -----------------------------------------
 ### 009-2. 캐릭터 애니메이션 조작하기 (part 2)
+
  ![character_image](./Animator.PNG)
- * 설명 : Animator를 구성하고, 키를 누르면 달리는 동작 연출시키기
- * 사용 방법 : 
+
+
+#### 설명 
+	- Animator를 구성하고, 키를 누르면 달리는 동작 연출시키기
+
+
+#### 사용 방법 
 	1. PlayerControlAnimation 파일을 오픈한다.
 	2. 해당 Animator의 Base Layer에서 다음과 같은 애니메이션 동작을 추가한다.
 		- Animations/common_people@backwards-run\backwards-run
@@ -55,18 +69,24 @@
 
 	8. CharacterAnimation_old.cs 파일을 해당 캐릭터 오브젝트에 적용시킨다.
 
- * 배운 내용 : 
+#### 배운 내용 
 	- Animator 컴포넌트를 다루는 방법에 관한 이해
 	- Animator 컴포넌트의 파라미터를 이용하는 방법에 관한 이해 
 	- Animator를 구성하는 방법에 관한 이해
 
- * 참고 자료 : https://m.blog.naver.com/game_studyz/220984736956
+#### 참고 자료
+ - [3인칭 캐릭터](https://m.blog.naver.com/game_studyz/220984736956)
+
 
 -----------------------------------------
 ### 009-3. 캐릭터 애니메이션 조작하기 (part 2)
+
  ![character_image](./Animator2.PNG)
- * 설명 : 
- * 사용 방법 : 
+
+
+#### 설명 
+
+#### 사용 방법 
 	1. PlayerControlAnimation 파일을 오픈한다.
 	2. 해당 Animator의 Base Layer에서 다음과 같은 애니메이션 동작을 추가한다.
 		- Animations/common_people@jump-up
@@ -107,7 +127,8 @@
 
 	5. 기존 CharacterAnimation.cs 혹은 CharacterAnimation_old.cs가 캐릭터 오브젝트에 적용 중일 경우 제거하고 새로운 CharacterAnimation.cs를 적용시킨다.
 
- * 배운 내용 : 
+
+#### 배운 내용 
 	- 부모 오브젝트로부터 컴포넌트, 스크립트를 받아오는 방법
 	- 리지드바디의 velocity.normalized.y를 이용한 점프 상태(점프 중, 낙하 중)의 이해
 	- horizontal, vertical을 이용하여 키 입력 감지 없이 물체의 움직임을 감지하는 방법에 관한 이해
