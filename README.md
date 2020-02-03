@@ -53,5 +53,6 @@
 - [VR007. (OculusGO 전용) 고개 숙일 시 카메라 위치 조절하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR007/readmeVR007.md)
 - [VR008. 컨트롤러 앞으로 이동시키기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR008/readmeVR008.md)
 - [VR009. VR 키보드 만들기 & 입력 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR009/readmeVR009.md)
+- [VR010. SQLite 데이터베이스 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR010/readmeVR010.md)
 
 -----------------------------------------
