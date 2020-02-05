@@ -4,7 +4,7 @@
  :bangbang: 아직 미완성된 문서입니다.
 
 
-![photonroom](./photon_roomlist.png)
+![photonroom](./photon_roomlist.PNG)
 
 
 #### 스크립트 설명
