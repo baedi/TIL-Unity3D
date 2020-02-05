@@ -55,5 +55,6 @@
 - [VR009. VR 키보드 만들기 & 입력 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR009/readmeVR009.md)
 - [VR010. SQLite 데이터베이스 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR010/readmeVR010.md)
 - [VR011. 포톤(Photon) 네트워크 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR011/readmeVR011.md)
+- [VR012. 포톤 네트워크, 방 목록 만들기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR012/readmeVR012.md)
 
 -----------------------------------------
