@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class PhotonManager : MonoBehaviourPunCallbacks {
-    
-    // Var              
 
+public class PhotonManager : MonoBehaviourPunCallbacks {
+
+    // Var              
+    public GameObject[] roomGameObject = new GameObject[4];
 
     // Initialize       
     private void Awake() {
@@ -42,13 +44,35 @@ public class PhotonManager : MonoBehaviourPunCallbacks {
     public override void OnRoomListUpdate(List<RoomInfo> roomList) {
         base.OnRoomListUpdate(roomList);
 
-        Debug.Log(roomList.Count);
+        Debug.Log("Room Count : " + roomList.Count);
 
-        foreach(var roomItem in roomList) {
-            Debug.Log("Room name : " + roomItem.Name);
-            Debug.Log("Player : " + roomItem.PlayerCount);
-            Debug.Log("Max Player : " + roomItem.MaxPlayers);
+        for(int count = 0; count < roomGameObject.Length; count++) {
+
+            // Room Avaliable.      
+            if(count < roomList.Count) {
+                var roomItem = roomList[count];
+                PhotonRoomInfo roominfo = roomGameObject[count].GetComponent<PhotonRoomInfo>();
+                roominfo.RoomName = roomItem.Name;
+                roominfo.RoomPlayer = roomItem.PlayerCount;
+                roominfo.RoomMaxPlayer = roomItem.MaxPlayers;
+
+                if (roominfo.RoomPlayer != 0)
+                    roomGameObject[count].GetComponent<Button>().interactable = true;
+
+                else 
+                    roomGameObject[count].GetComponent<Button>().interactable = false;
+
+                roominfo.RoomInfoTextChange();
+            }
+
+            else {
+                roomGameObject[count].GetComponent<Button>().interactable = false;
+                roomGameObject[count].GetComponentInChildren<Text>().text = "Empty";
+            }
+
         }
+
+
     }
 
 }
