@@ -19,6 +19,7 @@ public class PhotonInit2 : MonoBehaviourPunCallbacks
     private SqliteCommand command;
     private string dbName = @"\user.db";
     private string dbPath;
+    private Player hostPlayer;
 
 
     // Initialize       
@@ -71,7 +72,7 @@ public class PhotonInit2 : MonoBehaviourPunCallbacks
             Debug.Log(hostUserCheck.name);
             string hostname = hostUserCheck.transform.GetChild(0).name;
             Debug.Log(hostname);
-            PhotonNetwork.CreateRoom(hostname, new RoomOptions { MaxPlayers = 4, IsVisible = true });
+            PhotonNetwork.CreateRoom(hostname, new RoomOptions { MaxPlayers = 4, IsVisible = true, CleanupCacheOnLeave = false});
             Destroy(hostUserCheck);
             Debug.Log("Create Success!!!");
         }
@@ -92,8 +93,7 @@ public class PhotonInit2 : MonoBehaviourPunCallbacks
     }
 
     // Join Room (My or Other Player's Room)  
-    public override void OnJoinedRoom()
-    {
+    public override void OnJoinedRoom() {
         base.OnJoinedRoom();
 
         Debug.Log("Join Room");
@@ -101,18 +101,57 @@ public class PhotonInit2 : MonoBehaviourPunCallbacks
         tempObj.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         GameObject.Find("OVRCameraRig").transform.parent = tempObj.transform;
         GameObject.Find("OVRCameraRig").transform.localPosition = new Vector3(0, 0.8f, 0);
+
+
+        Player[] player = PhotonNetwork.PlayerList;
+        foreach(Player temp in player) {
+            Debug.Log(temp.NickName + " is " + (temp.IsMasterClient ? "Master" : "Other"));
+
+            if (temp.IsMasterClient) {
+                hostPlayer = temp;
+                break;
+            }
+        }
     }
 
 
     // Another player entered room function.    
     public override void OnPlayerEnteredRoom(Player newPlayer) {
         base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log("!");
+
     }
 
     // Another player leave room function.      
     public override void OnPlayerLeftRoom(Player otherPlayer) {
         base.OnPlayerLeftRoom(otherPlayer);
+
+        Debug.Log(otherPlayer.NickName);
+        Debug.Log(otherPlayer.UserId);
+        Debug.Log(otherPlayer.ActorNumber);
+
+        
+        if (hostPlayer.ActorNumber == otherPlayer.ActorNumber) {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene("LobbyScene");
+        }
+
+        else {
+            GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+            for(int count = 0; count < temp.Length; count++){
+                if (temp[count].GetComponent<PhotonView>().OwnerActorNr == otherPlayer.ActorNumber) {
+                    PhotonNetwork.Destroy(temp[count]);
+                    break;
+                }
+            }
+        }
+
+
     }
 
+    /*
+    public Player RoomHostPlayer() {
+        return hostPlayer;
+    }
+    */
 }
