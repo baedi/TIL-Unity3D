@@ -53,6 +53,12 @@
 
 
 
+#### 수정 사항
+	- (2020-02-09) 버튼에 포인터를 위치하다가 벗어날 경우 버튼 상태가 제대로 갱신되지 않는 버그 수정
+	- (2020-02-09) 비활성화인 버튼을 눌렀을 경우 버튼 이벤트가 발생되는 버그 수정
+
+
+
 #### 참고 자료
  - [String Remove()](https://docs.microsoft.com/ko-kr/dotnet/api/system.string.remove?view=netframework-4.8)
  - [Button.AddListener()](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/UI.Button-onClick.html)

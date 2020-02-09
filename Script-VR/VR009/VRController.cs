@@ -43,6 +43,15 @@ public class VRController : MonoBehaviour {
 
             if (raycastHit.collider.gameObject.CompareTag("Button"))
                 ButtonRayProcess();
+
+            else
+            {
+                if (currentButtonRay != null)
+                {
+                    currentButtonRay.GetComponent<Button>().OnPointerExit(null);
+                    currentButtonRay = null;
+                }
+            }
         }
 
         else {
@@ -64,10 +73,13 @@ public class VRController : MonoBehaviour {
             raycastHit.collider.gameObject.GetComponent<Button>().OnPointerClick(null);
 
         // Click (up)       
-        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-            raycastHit.collider.gameObject.GetComponent<Button>().onClick.Invoke();
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
+            Button temp = raycastHit.collider.gameObject.GetComponent<Button>();
+            if (temp.interactable == true)
+            temp.onClick.Invoke();
+        }
 
-        else 
+        else
             raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
 
 
