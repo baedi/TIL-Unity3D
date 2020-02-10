@@ -38,6 +38,7 @@
 - [030. 적 사망 연출 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/030/readme030.md)
 - [031. Firebase 연결 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/031/readme031.md)
 - [032. 씬(Scene) 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/032/readme032.md)
+- [033. 오브젝트 활성화/비활성화 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/033/readme033.md)
 
 -----------------------------------------
 
