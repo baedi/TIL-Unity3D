@@ -41,6 +41,7 @@
 - [033. 오브젝트 활성화/비활성화 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/033/readme033.md)
 - [034. 애니메이터 설정 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/034/readme034.md)
 - [035. UI 나타내기 효과 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/035/readme035.md)
+- [036. 로딩 씬 제작 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/036/readme036.md)
 
 -----------------------------------------
 
