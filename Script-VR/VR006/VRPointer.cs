@@ -6,83 +6,135 @@ using UnityEngine.UI;
 
 public class VRPointer : MonoBehaviour {
 
-    // 변수        
-    private LineRenderer lineRendererComp;      // 라인 렌더러                 
-    private RaycastHit raycastHit;              // 충돌 감지 전용              
-    private GameObject currentButtonRay;        // 최근 감지된 버튼 오브젝트   
+    // 변수           
+    private LineRenderer lineRendererComp;
+    private RaycastHit raycastHit;
+    private GameObject currentRay;
 
-    public float raycastDistance = 50f;     // 감지 거리      
+    public float raycastDistance = 50f;
 
 
-    // 초기화      
+    // 초기화          
     private void Awake() {
 
-        // 컴포넌트 추가      
         lineRendererComp = this.gameObject.AddComponent<LineRenderer>();
 
-        // 라인 설정          
-        Material material = new Material(Shader.Find("Standard"));
-        material.color = new Color(0, 195, 255, 0.5f);
+        // 라인 설정        
+        Material mat = new Material(Shader.Find("Standard"));
+        mat.color = new Color(0, 251, 255, 0.5f);
 
-        lineRendererComp.material = material;
+        lineRendererComp.material = mat;
         lineRendererComp.positionCount = 2;
         lineRendererComp.startWidth = 0.01f;
         lineRendererComp.endWidth = 0.01f;
     }
 
 
-    // 루프        
+    // Loop         
     private void Update() {
 
+        // 시작 위치        
         lineRendererComp.SetPosition(0, transform.position);
+
 
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green, 0.5f);
 
+
         // 충돌 감지 시      
-        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, raycastDistance)) {
+        if(Physics.Raycast(transform.position, transform.forward, out raycastHit, raycastDistance) && gameObject.activeInHierarchy) {
             lineRendererComp.SetPosition(1, raycastHit.point);
 
-            // 충돌 객체의 태그가 Button인 경우        
-            if (raycastHit.collider.gameObject.CompareTag("Button")) {
+            // 버튼 충돌        
+            if (raycastHit.collider.gameObject.CompareTag("Button")) 
+                ButtonRayProcess();
 
-                // 클릭할 경우           
-                if (OVRInput.GetDown(OVRInput.Button.One)){
-                    raycastHit.collider.gameObject.GetComponent<Button>().onClick.Invoke();
-                }
+            // 스크롤바 충돌    
+            if (raycastHit.collider.gameObject.CompareTag("Scrollbar"))
+                ScrollbarRayProcess();
 
-                else {
-                    // 포인터 in 처리        
-                    raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
-                    currentButtonRay = raycastHit.collider.gameObject;
+            // 기타 충돌        
+            else
+            {
+                if (currentRay != null)
+                {
+
+                    // 버튼 전용        
+                    if (currentRay.gameObject.CompareTag("Button"))
+                        currentRay.GetComponent<Button>().OnPointerExit(null);
+
+                    // 스크롤바 전용    
+                    else if (currentRay.gameObject.CompareTag("Scrollbar"))
+                        currentRay.GetComponent<Scrollbar>().OnPointerExit(null);
+
+                    currentRay = null;
                 }
             }
         }
 
+        // 충돌 미 감지 시    
         else {
             lineRendererComp.SetPosition(1, transform.position + (transform.forward * raycastDistance));
 
-            // 최근 감지된 오브젝트가 Button인 경우    
-            if(currentButtonRay != null) {
-                // 포인터 out 처리       
-                currentButtonRay.GetComponent<Button>().OnPointerExit(null);
-                currentButtonRay = null;
+            if(currentRay != null) {
+
+                if (currentRay.gameObject.CompareTag("Button"))
+                    currentRay.GetComponent<Button>().OnPointerExit(null);
+
+                else if (currentRay.gameObject.CompareTag("Scrollbar"))
+                    currentRay.GetComponent<Scrollbar>().OnPointerExit(null);
+
+                currentRay = null;
             }
         }
     }
+    
 
 
-    // 루프 2         
-    private void LateUpdate() {
-        // 버튼을 누를 경우        
-        if (OVRInput.GetDown(OVRInput.Button.One)) {
-            lineRendererComp.material.color = new Color(255, 255, 255, 0.5f);
+    // 버튼 감지            
+    private void ButtonRayProcess() {
+        // 클릭 Down          
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            raycastHit.collider.gameObject.GetComponent<Button>().OnPointerClick(null);
+
+        // 클릭 Up            
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
+            Button temp = raycastHit.collider.gameObject.GetComponent<Button>();
+            if (temp.interactable == true)
+            temp.onClick.Invoke();
         }
 
-        // 버튼을 뗄 경우          
-        else if (OVRInput.GetUp(OVRInput.Button.One)) {
-            lineRendererComp.material.color = new Color(0, 195, 255, 0.5f);
-        }
+        else
+            raycastHit.collider.gameObject.GetComponent<Button>().OnPointerEnter(null);
+
+
+        currentRay = raycastHit.collider.gameObject;
     }
 
 
+    // 스크롤 바 감지         
+    private void ScrollbarRayProcess() {
+        // 클릭 Down          
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            raycastHit.collider.gameObject.GetComponent<Scrollbar>().OnSelect(null);
+
+        // 클릭 Up            
+        else if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKey(KeyCode.E)) {
+            Scrollbar temp = raycastHit.collider.gameObject.GetComponent<Scrollbar>();
+
+            if (temp.interactable == true) {
+                PointerEventData pointerEventData = new PointerEventData(null);
+                pointerEventData.position = new Vector2(raycastHit.point.x, raycastHit.point.y);
+                temp.OnDrag(pointerEventData);
+
+                //temp.value = 1f;
+
+            }
+
+        }
+
+        else
+            raycastHit.collider.gameObject.GetComponent<Scrollbar>().OnPointerEnter(null);
+
+        currentRay = raycastHit.collider.gameObject;
+    }
 }
