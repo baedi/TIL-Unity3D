@@ -44,6 +44,7 @@
 - [036. 로딩 씬 제작 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/036/readme036.md)
 - [037. 반경 내에 존재하는 게임 오브젝트 감지 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/037/readme037.md)
 - [038. 스크롤바 이벤트 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/038/readme038.md)
+- [038-2. Scrollbar, Mask 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/038/readme038-2.md)
 -----------------------------------------
 
 ## 목록 (VR)
