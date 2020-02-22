@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VRPointer : MonoBehaviour {
+public class VRPointer_old4 : MonoBehaviour {
 
     // 변수           
     private LineRenderer lineRendererComp;
@@ -97,18 +97,10 @@ public class VRPointer : MonoBehaviour {
             raycastHit.collider.gameObject.GetComponent<Button>().OnPointerClick(null);
 
         // 클릭 Up            
-        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.E)) {
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
             Button temp = raycastHit.collider.gameObject.GetComponent<Button>();
-            if (temp.interactable == true) {
-                //temp.onClick.Invoke();
-                EventSystem.current.SetSelectedGameObject(raycastHit.collider.gameObject);
-                PointerEventData pointerEventData = new PointerEventData(null);
-                pointerEventData.position = new Vector2(raycastHit.point.x, raycastHit.point.y);
-
-                //temp.OnSelect(pointerEventData);
-                temp.OnPointerClick(pointerEventData);
-            }
-
+            if (temp.interactable == true)
+            temp.onClick.Invoke();
         }
 
         else
@@ -132,7 +124,6 @@ public class VRPointer : MonoBehaviour {
             if (temp.interactable == true) {
                 PointerEventData pointerEventData = new PointerEventData(null);
                 pointerEventData.position = new Vector2(raycastHit.point.x, raycastHit.point.y);
-                //pointerEventData.selectedObject = raycastHit.collider.gameObject;
                 temp.OnDrag(pointerEventData);
 
                 //temp.value = 1f;
