@@ -36,3 +36,25 @@
 			- '▲' : 소문자로 변환됨 (원래 대문자로 변환할 의도였음..)
 			- '▽' : 대문자로 변환됨 
 			- "Close" : VR 키보드를 비활성화함
+
+
+	- [KeySettings.cs]
+	
+	- (변수/프로퍼티 목록)
+	- string TextSmall : 소문자용 프로퍼티 (외부에서 할당, 리턴 가능)
+	- string TextBig : 대문자용 프로퍼티 (외부에서 할당, 리턴 가능)
+	- Text textComp : 현재 키 UI에서 보여지는 문자로, 해당 문자가 입력으로 나감.
+	
+	- (함수 목록)
+	- KeyInitialize( ) : 
+		- KeyManager에 의해 호출되는 함수
+		- 처음에는 TextSmall에 할당된 값을 가지고 키 UI에 보여줌
+		- 키 UI가 눌러지면 OnButtonClick( )함수를 호출하는 리스너를 설정함
+
+	- OnButtonClick( ) : 
+		- 키 UI를 누르면 작동하는 함수로, KeyboardManager 컴포넌트를 가져와서 OnKeyButtonClickInChildren( ) 함수를 호출하여 현재 Text에 적힌 값을 보냄
+		- 해당 함수는 리스너에 의해 등록되므로 Button 컴포넌트의 OnClick에 별도로 등록해줄 필요 없음.
+
+	- ChangeKeyText( ) : 
+		- KeyboardManager에 의해 동작함.
+		- 소문자는 대문자로, 대문자는 소문자로 바꿔주는 역할을 함.
