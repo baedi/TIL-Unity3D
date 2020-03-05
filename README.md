@@ -47,6 +47,7 @@
 - [038-2. Scrollbar, Mask 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/038/readme038-2.md)
 - [039. 대화창 효과 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/039/readme039.md)
 - [040. 특정 씬 로드 시 로딩 씬을 거쳐서 처리하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/040/readme040.md)
+- [041. 사운드, 음악 관리 및 조절 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/041/readme041.md)
 -----------------------------------------
 
 ## 목록 (VR)
