@@ -28,9 +28,28 @@
 	- void Awake( ) : 플레이 시 호출되는 메소드
 		- 퍼블릭 게임오브젝트로부터 특정 컴포넌트를 가져와 초기화함.
 		- 음악/사운드의 스크롤바 value 값이 변경될 경우 호출할 메소드에 대하여 리스너 설정함.
-
 	- void MusicValueChanged( ) : musicScrollbar의 value 값이 변경될 경우 호출되어 텍스트 최신화 및 음악 음량 조절이 이루어짐.
 	- void SoundValueChanged( ) : soundScrollbar의 value 값이 변경될 경우 호출되어 텍스트 최신화 및 사운드 음량 조절이 이루어짐.
 
 
+	- [SoundManager.cs]
+	- *** 변수
+	- GameObject soundScrollbarObj : 음악 음량 조절을 위한 Scrollbar UI 오브젝트
+	- AudioClip click : 버튼 클릭 사운드
+	- AudioClip appear : 대화 창 나타나기 사운드
+	- AudioClip disappear : 대화 창 사라지기 사운드
+	- AudioClip error : 에러 대화 창 사운드
 
+	- *** 메소드
+	- void Awake( ) : 플레이 시 호출되는 메소드
+		- 이 스크립트를 적용한 오브젝트에게서 <AudioSource> 컴포넌트가 있는지 확인. 없으면 생성함.
+	- void Start( ) : Awake 작업 이후 호출되는 초기화 메소드
+		- DB로부터 볼륨 값을 가져옴. 만약 실패 시 음량이 80%로 고정됨.
+		- soundScrollbarObj의 스크롤바 값을 설정 및 오디오 볼륨을 설정함. 만약 해당 오브젝트가 없다면 오디오 볼륨만 설정함.
+	- void SetSoundVolume(float volume) : 파라미터 값을 이용하여 오디오 볼륨을 설정함.
+	- void SetSoundVolume(GameObject scrollObj) : 파라미터 값의 <Scrollbar> 컴포넌트를 가져와서 해당 스크롤바의 값으로 오디오 볼륨을 설정함.
+	- void Sound_click( ) : click 변수에 저장된 사운드를 재생시킴
+	- void Sound_appear( ) : appear 변수에 저장된 사운드를 재생시킴
+	- void Sound_disappear( ) : disappear 변수에 저장된 사운드를 재생시킴
+	- void Sound_error( ) : error 변수에 저장된 사운드를 재생시킴
+	- 
