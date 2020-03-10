@@ -7,6 +7,9 @@
 	- Mesh의 특정 포인터들의 y축이 서서히 감소하여 구멍을 형성하는 스크립트
 
 
+#### 업데이트
+	- (2020-03-10) Mesh Generator에 텍스쳐 적용하는 코드 추가
+
 
 #### 사용 방법 
 	1. Hierarchy에서 빈 오브젝트 생성
@@ -25,6 +28,7 @@
 	- Mesh Filter 이용하는 방법
 	- Mesh Renderer에 관한 이해
 	- Mesh 조작 & 갱신 방법
+	- (2020-03-10) uvs를 이용한 텍스쳐 적용 방법
 	
 
 
@@ -32,4 +36,4 @@
  - [MESH GENERATOR 1 - Brackeys](https://www.youtube.com/watch?v=eJEpeUH1EMg)
  - [MESH GENERATOR 2 - Brackeys](https://www.youtube.com/watch?v=64NblGkAabk)
  - [How to Update Mesh Collider](https://answers.unity.com/questions/193630/modify-mesh-collider-when-modifying-vertices.html)
-
+ - [Mesh.uv Unity API](https://docs.unity3d.com/kr/530/ScriptReference/Mesh-uv.html)
