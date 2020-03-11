@@ -2,9 +2,9 @@
 
 
 #### 스크립트 설명 
-	- SoundSettings.cs :  
-	- SoundManager.cs : 
-	- MusicManager.cs : 
+	- SoundSettings.cs : 사운드, 배경음악 관련 스크롤바, 텍스트 연출, 음량 조절 이벤트 관리 스크립트
+	- SoundManager.cs : 사운드 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
+	- MusicManager.cs : 배경음악 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
 
 
 #### 변수 및 메소드 소개
@@ -52,4 +52,19 @@
 	- void Sound_appear( ) : appear 변수에 저장된 사운드를 재생시킴
 	- void Sound_disappear( ) : disappear 변수에 저장된 사운드를 재생시킴
 	- void Sound_error( ) : error 변수에 저장된 사운드를 재생시킴
-	- 
+
+
+
+	- [MusicManager.cs]
+	- *** 변수
+	- GameObject mainManager : 메인 매니저 오브젝트 전용
+	- GameObject musicScrollbarObj : 음악 음량 조절을 위한 Scrollbar UI 오브젝트
+	- AudioClip bgm : 음악 파일 전용
+	
+	- *** 메소드
+	- void Awake( ) : 플레이 시 호출되는 메소드
+	- void Start( ) : Awake 작업 이후 호출되는 초기화 메소드
+		- DB로부터 볼륨 값을 가져옴. 만약 실패 시 음량이 80%로 고정됨.
+		- musicScrollbarObj의 스크롤바 값을 설정 및 오디오 볼륨을 설정함. 만약 해당 오브젝트가 없다면 볼륨만 설정함.
+	- void SetMusicVolume(float volume) : 파라미터 값을 이용하여 오디오 볼륨을 설정함.
+	- void SetMusicVolume(GameObject scrollObj) : 파라미터 값의 <Scrollbar> 컴포넌트를 가져와서 해당 스크롤바의 값으로 오디오 볼륨을 설정함.
