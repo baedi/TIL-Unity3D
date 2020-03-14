@@ -68,5 +68,5 @@
 - [VR012. 포톤 네트워크, 로비 & 방 목록 만들기 & 기타 설정사항 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR012/readmeVR012.md)
 - [VR013. 검은 화면 연출하기](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR013/readmeVR013.md)
 - [VR014. 부모/자식 클래스 활용하기](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR014/readmeVR014.md)
-
+- [VR015. 아이템(도구) 착용/해제하기](https://github.com/baedi/TIL-Unity3D/blob/master/Script-VR/VR015/readmeVR015.md)
 -----------------------------------------
