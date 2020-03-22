@@ -24,7 +24,7 @@ public class TriggerGenerator : MonoBehaviour {
     private GeneratorPointTypes triggerType;    /** 트리거 유형 **/
     private GameObject meshGeneratorObj;        /** 메쉬 제네레이터 전용 오브젝트 **/
 
-    private int effcectCount = 0;       /** 트리거 or 충돌 발생 시 하나씩 깎임. (0이 되면 Normal 상태로 변경 필요) **/
+    private int effectCount = 0;       /** 트리거 or 충돌 발생 시 하나씩 깎임. (0이 되면 Normal 상태로 변경 필요) **/
     private float effectValueY = 0.0f;  /** 트리거 or 충돌 발생 시 해당 수치만큼의 y축(높이)에 값 변화 발생 **/
 
     public Material normal_mat;         /** Material 전용 변수 **/
@@ -52,6 +52,9 @@ public class TriggerGenerator : MonoBehaviour {
         triggerType = GeneratorPointTypes.Normal;
         GetComponent<MeshRenderer>().material = normal_mat;
         this.gameObject.tag = "trig_normal";
+
+        /** 리지드바디 설정 **/
+        this.gameObject.AddComponent<Rigidbody>().useGravity = false;
     }
 
     // 유형 변경                     
@@ -62,24 +65,38 @@ public class TriggerGenerator : MonoBehaviour {
             /** 일반 **/
             case GeneratorPointTypes.Normal:
                 gameObject.tag = "trig_normal";
-                effcectCount = 0;
+                gameObject.layer = 0;
+                triggerType = GeneratorPointTypes.Normal;
+                GetComponent<MeshRenderer>().material = normal_mat;
+                GetComponent<Collider>().isTrigger = true;
+                effectCount = 0;
                 effectValueY = 0.0f;
                 break;
 
-            /** 흙 **/
+            /** 흙 (비료용) **/
             case GeneratorPointTypes.Soil:
+                gameObject.tag = "trig_soil";
+                gameObject.layer = 9;
+                triggerType = GeneratorPointTypes.Soil;
+                GetComponent<MeshRenderer>().material = soil_mat;
+                GetComponent<Collider>().isTrigger = false;
+                effectCount = addCount;
+                effectValueY = 0.0f;
                 break;
 
             /** 삽질 가능 **/
             case GeneratorPointTypes.Dig:
+                GetComponent<MeshRenderer>().material = dig_mat;
                 break;
 
             /** 작은 삽질 가능 **/
             case GeneratorPointTypes.Lowdig:
+                GetComponent<MeshRenderer>().material = lowdig_mat;
                 break;
 
             /** 심기 가능 **/
             case GeneratorPointTypes.Plant:
+                GetComponent<MeshRenderer>().material = plant_mat;
                 break;
         }
     }
@@ -89,5 +106,42 @@ public class TriggerGenerator : MonoBehaviour {
     public void SetTransformY(float addValue) {
         meshPoint[meshPointIndex].y += addValue;
         transform.localPosition = meshPoint[meshPointIndex];
+    }
+
+
+    // 트리거 감지 확인              
+    private void OnTriggerEnter(Collider other) {
+
+        switch (triggerType) {
+            case GeneratorPointTypes.Normal: break;
+
+            case GeneratorPointTypes.Soil:
+                if (other.gameObject.CompareTag("eff_fertilizer") || other.gameObject.CompareTag("particle")) {
+                    Debug.Log("!");
+                    effectCount--;
+                    if (effectCount <= 0) ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                }
+                break;
+
+            case GeneratorPointTypes.Dig: break;
+
+            case GeneratorPointTypes.Lowdig: break;
+
+            case GeneratorPointTypes.Plant: break;
+
+        }
+    }
+
+
+    // 파티클 충돌 감지                
+    private void OnParticleCollision(GameObject other){
+        if(triggerType == GeneratorPointTypes.Soil) {
+            Debug.Log(gameObject.name + "-> Count : " + (effectCount - 1));
+            effectCount--;
+            if (effectCount <= 0) {
+                ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                Debug.Log(gameObject.name + "-> Change Type(Normal)");
+            }
+        }
     }
 }
