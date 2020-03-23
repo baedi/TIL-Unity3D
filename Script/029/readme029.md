@@ -4,12 +4,12 @@
 
 
 #### 스크립트 설명 
-	- Mesh의 특정 포인터들의 y축이 서서히 감소하여 구멍을 형성하는 스크립트
-
+	- MeshGenerator2.cs : Mesh의 특정 포인터들의 y축이 서서히 감소하여 구멍을 형성하는 스크립트
+	- TriggerGenerator.cs : 
 
 #### 업데이트
 	- (2020-03-10) Mesh Generator에 텍스쳐 적용하는 코드 추가
-
+	- (2020-03-23) TriggerGenerator.cs 스크립트 추가
 
 #### 사용 방법 
 	1. Hierarchy에서 빈 오브젝트 생성
