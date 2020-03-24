@@ -64,41 +64,48 @@ public class TriggerGenerator : MonoBehaviour {
         switch (changeType) {
             /** 일반 **/
             case GeneratorPointTypes.Normal:
-                gameObject.tag = "trig_normal";
-                gameObject.layer = 0;
-                triggerType = GeneratorPointTypes.Normal;
-                GetComponent<MeshRenderer>().material = normal_mat;
-                GetComponent<Collider>().isTrigger = true;
+                ChangeTypeSettingModule("trig_normal", 0, GeneratorPointTypes.Normal, normal_mat, true);
                 effectCount = 0;
                 effectValueY = 0.0f;
                 break;
 
             /** 흙 (비료용) **/
             case GeneratorPointTypes.Soil:
-                gameObject.tag = "trig_soil";
-                gameObject.layer = 9;
-                triggerType = GeneratorPointTypes.Soil;
-                GetComponent<MeshRenderer>().material = soil_mat;
-                GetComponent<Collider>().isTrigger = false;
+                ChangeTypeSettingModule("trig_soil", 9, GeneratorPointTypes.Soil, soil_mat, false);
                 effectCount = addCount;
                 effectValueY = 0.0f;
                 break;
 
             /** 삽질 가능 **/
             case GeneratorPointTypes.Dig:
-                GetComponent<MeshRenderer>().material = dig_mat;
+                ChangeTypeSettingModule("trig_dig", 0, GeneratorPointTypes.Dig, dig_mat, true);
+                effectCount = addCount;
+                effectValueY = addEffValueY;
                 break;
 
             /** 작은 삽질 가능 **/
             case GeneratorPointTypes.Lowdig:
-                GetComponent<MeshRenderer>().material = lowdig_mat;
+                ChangeTypeSettingModule("trig_homiedig", 0, GeneratorPointTypes.Lowdig, lowdig_mat, true);
+                effectCount = addCount;
+                effectValueY = addEffValueY;
                 break;
 
             /** 심기 가능 **/
             case GeneratorPointTypes.Plant:
-                GetComponent<MeshRenderer>().material = plant_mat;
+                ChangeTypeSettingModule("col_plant", 0, GeneratorPointTypes.Plant, plant_mat, false);
+                effectCount = addCount;
+                effectValueY = 0.0f;
                 break;
         }
+    }
+
+    // 유형 변경 전용 메소드     
+    private void ChangeTypeSettingModule(string tagName, int colLayerNum, GeneratorPointTypes type, Material material, bool triggerOn) {
+        gameObject.tag = tagName;                           /** 태그 이름 변경 **/
+        gameObject.layer = colLayerNum;                     /** 레이어 유형 변경 **/
+        triggerType = type;                                 /** 트리거 타입 변경 **/
+        GetComponent<MeshRenderer>().material = material;   /** 머터리얼 변경 **/
+        GetComponent<Collider>().isTrigger = triggerOn;     /** 트리거 활성화 여부 설정 **/
     }
 
 
