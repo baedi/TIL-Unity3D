@@ -31,19 +31,19 @@ public class BigShovel : ItemManager {
             transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.forward * digDistance, lerpPoint * 2 * Time.deltaTime);
         }
 
-        else if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) {
+        /** 삽 원래대로 **/
+        else {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0, 0, 0), lerpPoint * Time.deltaTime);
+        }
+
+
+        if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) {
             /** 삽에 흙이 존재할 경우 뿌리기 **/
             if (isSoilEnable) {
                 isSoilEnable = false;
                 shovel_normal_model.SetActive(true);
                 shovel_lomp_model.SetActive(false);
             }
-        }
-
-
-        /** 삽 원래대로 **/
-        else {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0, 0, 0), lerpPoint * Time.deltaTime);
         }
 
         /** 아이템 장착 해제 **/
@@ -65,10 +65,11 @@ public class BigShovel : ItemManager {
         if (!other.gameObject.CompareTag("trig_dig")) return;
 
         /** 흙이 있으면서 버튼을 누른 상태 **/
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && !isSoilEnable){
+        if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && !isSoilEnable){
             isSoilEnable = true;
             shovel_normal_model.SetActive(false);
             shovel_lomp_model.SetActive(true);
+            other.GetComponent<TriggerGenerator>().CallbackEffect(TriggerGenerator.GeneratorPointTypes.Dig);
         }
     }
 

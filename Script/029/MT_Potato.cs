@@ -40,7 +40,7 @@ public class MT_Potato : MeshType {
 
         for (int lineCount = 0; lineCount < lines.Length; lineCount++)
             for (int index = 2; index < meshGenerator.xScale - 1; index++)
-                triggerObj[xEA * lines[lineCount] + index].GetComponent<TriggerGenerator>().SetTransformY(0.5f);
+                triggerObj[xEA * lines[lineCount] + index].GetComponent<TriggerGenerator>().SetTransformY(0.5f, false);
 
         /** 땅 파기 가능 범위 초기화 **/
         lines = new int[] { 6, 10 };
@@ -55,6 +55,9 @@ public class MT_Potato : MeshType {
             triggerObj[index].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Soil, 2, 0.0f);
         }
 
+        // Test
+        triggerObj[53].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Dig, 10, -0.1f);
+        triggerObj[89].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Dig, 10, -0.1f);
 
         meshGenerator.UpdateMeshInfo();
     }

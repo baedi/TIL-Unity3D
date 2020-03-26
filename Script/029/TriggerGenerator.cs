@@ -110,9 +110,12 @@ public class TriggerGenerator : MonoBehaviour {
 
 
     // 땅 높이 설정                  
-    public void SetTransformY(float addValue) {
+    public void SetTransformY(float addValue, bool meshUpdate) {
         meshPoint[meshPointIndex].y += addValue;
         transform.localPosition = meshPoint[meshPointIndex];
+
+        /** meshUpdate가 true이면 Mesh를 업데이트함. **/
+        if(meshUpdate) GetComponentInParent<MeshGenerator>().UpdateMeshInfo();
     }
 
 
@@ -136,6 +139,29 @@ public class TriggerGenerator : MonoBehaviour {
 
             case GeneratorPointTypes.Plant: break;
 
+        }
+    }
+
+
+    // 트리거(or 콜백) 감지 확인 (수동)       
+    public void CallbackEffect(GeneratorPointTypes type) {
+
+        /** 파라미터로 가져온 타입이 실제 이 오브젝트의 타입과 다르면 리턴 **/
+        if (type != triggerType) return;
+
+        switch (type) {
+            case GeneratorPointTypes.Normal : break;
+            case GeneratorPointTypes.Soil: break;
+
+            /** effectValueY 수치만큼 땅 파기 **/
+            case GeneratorPointTypes.Dig:
+                SetTransformY(effectValueY, true);
+                effectCount--;
+                if (effectCount <= 0)
+                    ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                break;
+            case GeneratorPointTypes.Lowdig: break;
+            case GeneratorPointTypes.Plant: break;
         }
     }
 
