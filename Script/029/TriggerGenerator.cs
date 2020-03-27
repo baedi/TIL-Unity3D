@@ -13,6 +13,7 @@ public class TriggerGenerator : MonoBehaviour {
     public enum GeneratorPointTypes {
         Normal, /** 일반 포인트 (아무 효과 없음) ...trig_normal **/
         Soil,   /** 비료 감지용  ...trig_soil **/
+        Water,  /** 수분이 필요한 흙 ... trig_water **/
         Dig,    /** 일반 모종 삽으로 땅을 팔 수 있는 포인트 ...trig_dig **/
         Lowdig, /** 호미로 땅을 팔 수 있는 포인트 ...trig_homiedig **/
         Plant   /** 작물을 심을 수 있는 포인트 ...col_plant **/ 
@@ -26,9 +27,11 @@ public class TriggerGenerator : MonoBehaviour {
 
     private int effectCount = 0;       /** 트리거 or 충돌 발생 시 하나씩 깎임. (0이 되면 Normal 상태로 변경 필요) **/
     private float effectValueY = 0.0f;  /** 트리거 or 충돌 발생 시 해당 수치만큼의 y축(높이)에 값 변화 발생 **/
+    private bool isTriggerOn;
 
     public Material normal_mat;         /** Material 전용 변수 **/
     public Material soil_mat;
+    public Material water_mat;
     public Material dig_mat;
     public Material lowdig_mat;
     public Material plant_mat;
@@ -72,6 +75,13 @@ public class TriggerGenerator : MonoBehaviour {
             /** 흙 (비료용) **/
             case GeneratorPointTypes.Soil:
                 ChangeTypeSettingModule("trig_soil", 9, GeneratorPointTypes.Soil, soil_mat, false);
+                effectCount = addCount;
+                effectValueY = 0.0f;
+                break;
+
+            /** 수분 가능 **/
+            case GeneratorPointTypes.Water:
+                ChangeTypeSettingModule("trig_water", 0, GeneratorPointTypes.Water, water_mat, true);
                 effectCount = addCount;
                 effectValueY = 0.0f;
                 break;
@@ -121,26 +131,49 @@ public class TriggerGenerator : MonoBehaviour {
 
     // 트리거 감지 확인              
     private void OnTriggerEnter(Collider other) {
+        Debug.Log(this.gameObject.name + " : " + "Trigger On");
+        Debug.Log(other.gameObject.name);
 
         switch (triggerType) {
             case GeneratorPointTypes.Normal: break;
+            case GeneratorPointTypes.Soil: break;
 
-            case GeneratorPointTypes.Soil:
-                if (other.gameObject.CompareTag("eff_fertilizer") || other.gameObject.CompareTag("particle")) {
+            case GeneratorPointTypes.Water:
+                if (other.gameObject.CompareTag("eff_water")) {
                     Debug.Log("!");
-                    effectCount--;
-                    if (effectCount <= 0) ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                    isTriggerOn = true;
+                    StartCoroutine(OnTriggerStayProcess());
                 }
                 break;
 
             case GeneratorPointTypes.Dig: break;
-
             case GeneratorPointTypes.Lowdig: break;
-
             case GeneratorPointTypes.Plant: break;
 
         }
     }
+
+    // 트리거 벗어남 확인               
+    private void OnTriggerExit(Collider other) {
+        isTriggerOn = false;
+    }
+
+    // 트리거 감지에 대하여 매 초마다 처리     
+    private IEnumerator OnTriggerStayProcess() {
+        while (isTriggerOn) {
+            yield return new WaitForSeconds(1);
+            if (!isTriggerOn) break;
+
+            effectCount--;
+            if(effectCount <= 0) {
+                ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                break;
+            }
+        }
+
+        yield return null;
+    }
+
 
 
     // 트리거(or 콜백) 감지 확인 (수동)       
@@ -168,7 +201,9 @@ public class TriggerGenerator : MonoBehaviour {
 
     // 파티클 충돌 감지                
     private void OnParticleCollision(GameObject other){
-        if(triggerType == GeneratorPointTypes.Soil) {
+        Debug.Log($"OnParticleCollision({other.name})");
+
+        if(triggerType == GeneratorPointTypes.Soil && other.CompareTag("eff_fertilizer")) {
             Debug.Log(gameObject.name + "-> Count : " + (effectCount - 1));
             effectCount--;
             if (effectCount <= 0) {
@@ -177,4 +212,5 @@ public class TriggerGenerator : MonoBehaviour {
             }
         }
     }
+
 }
