@@ -52,12 +52,17 @@ public class MT_Potato : MeshType {
         
         /** 모든 포인트를 soil 로 재 초기화 **/
         for(int index = 0; index <meshPoint.Length; index++) {
-            triggerObj[index].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Soil, 2, 0.0f);
+            triggerObj[index].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Soil, 30, 0.0f);
         }
 
         // Test
         triggerObj[53].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Dig, 10, -0.1f);
         triggerObj[89].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Dig, 10, -0.1f);
+        triggerObj[91].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
+        triggerObj[92].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
+        triggerObj[93].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
+        triggerObj[94].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
+        triggerObj[95].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
 
         meshGenerator.UpdateMeshInfo();
     }
