@@ -1,22 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * ItemManager 자식 클래스.
  * 이 클래스는 아이템 역할을 수행함.
  * PotatoProcess.cs와 연계함.
- **/ 
+ **/
 public class Potato : ItemManager {
 
     // 변수               
     private float lerpPoint = 4f;
     private float raycastDistance = 1.5f;
     private RaycastHit raycastHit;
+    private Transform cameraTransform;
+
+    public GameObject raycastUICanvas;
+    public GameObject growPotatoPrefab;
+
 
     // 초기화             
     private void Start() {
         /** 아이템을 최초로 장착했을 시 동작 **/
+        cameraTransform = GetComponentInParent<OVRCameraRig>().gameObject.transform;
     }
 
     // 반복문             
@@ -28,11 +35,24 @@ public class Potato : ItemManager {
         /** 감지 확인 **/
         if(Physics.Raycast(transform.position, transform.forward, out raycastHit, raycastDistance) && this.enabled) {
 
-            /** plant 콜라이더 감지했을 때 버튼도 같이 누를 경우 **/
-            if(raycastHit.collider.gameObject.CompareTag("col_plant") && 
-                (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || 
-                Input.GetKeyDown(KeyCode.E))) {
+            /** plant 콜라이더를 감지했을 경우 UI 표시 **/
+            if (raycastHit.collider.gameObject.CompareTag("col_plant")) {
 
+                /** UI 표시 **/
+                raycastUICanvas.GetComponentInChildren<Text>().text = "심기";
+                raycastUICanvas.transform.LookAt(cameraTransform.position);
+                raycastUICanvas.transform.position = raycastHit.collider.gameObject.transform.position + (Vector3.up * 0.5f);
+                raycastUICanvas.SetActive(true);
+
+                /** 버튼도 눌렀을 경우 해당 좌표에 감자 심기 및 감자 아이템 제거 **/
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.E)) {
+
+
+                    /** + 감자 심기 **/
+
+
+                    playerManager.GetComponent<PlayerManager>().OnItemDestroy(this.gameObject);
+                }
             }
         }
 
