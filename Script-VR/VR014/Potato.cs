@@ -36,24 +36,32 @@ public class Potato : ItemManager {
         if(Physics.Raycast(transform.position, transform.forward, out raycastHit, raycastDistance) && this.enabled) {
 
             /** plant 콜라이더를 감지했을 경우 UI 표시 **/
-            if (raycastHit.collider.gameObject.CompareTag("col_plant")) {
+            if (raycastHit.collider.gameObject.CompareTag("col_plant")
+                && !(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.E))) {
 
                 /** UI 표시 **/
                 raycastUICanvas.GetComponentInChildren<Text>().text = "심기";
                 raycastUICanvas.transform.LookAt(cameraTransform.position);
                 raycastUICanvas.transform.position = raycastHit.collider.gameObject.transform.position + (Vector3.up * 0.5f);
                 raycastUICanvas.SetActive(true);
-
-                /** 버튼도 눌렀을 경우 해당 좌표에 감자 심기 및 감자 아이템 제거 **/
-                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.E)) {
-
-
-                    /** + 감자 심기 **/
-
-
-                    playerManager.GetComponent<PlayerManager>().OnItemDestroy(this.gameObject);
-                }
             }
+
+            /** 버튼도 같이 눌렀을 경우 동작 **/
+            else if(raycastHit.collider.gameObject.CompareTag("col_plant")
+                && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.E))) {
+
+                /** 감자 심기 **/
+                GameObject temp = Instantiate(growPotatoPrefab);
+                temp.transform.position = raycastHit.transform.position;
+                raycastHit.collider.gameObject.GetComponent<TriggerGenerator>().CallbackEffect(TriggerGenerator.GeneratorPointTypes.Plant);
+
+                playerManager.GetComponent<PlayerManager>().OnItemDestroy(this.gameObject);
+            }
+
+            else {
+                raycastUICanvas.SetActive(false);
+            }
+
         }
 
 
