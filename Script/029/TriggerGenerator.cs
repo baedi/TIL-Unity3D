@@ -11,12 +11,13 @@ public class TriggerGenerator : MonoBehaviour {
 
     // 열거형              
     public enum GeneratorPointTypes {
-        Normal, /** 일반 포인트 (아무 효과 없음) ...trig_normal **/
-        Soil,   /** 비료 감지용  ...trig_soil **/
-        Water,  /** 수분이 필요한 흙 ... trig_water **/
-        Dig,    /** 일반 모종 삽으로 땅을 팔 수 있는 포인트 ...trig_dig **/
-        Lowdig, /** 호미로 땅을 팔 수 있는 포인트 ...trig_homiedig **/
-        Plant   /** 작물을 심을 수 있는 포인트 ...col_plant **/ 
+        Normal,     /** 일반 포인트 (아무 효과 없음) ...trig_normal **/
+        Soil,       /** 비료 감지용  ...trig_soil **/
+        Water,      /** 수분이 필요한 흙 ... trig_water **/
+        Dig,        /** 일반 모종 삽으로 땅을 팔 수 있는 포인트 ...trig_dig **/
+        Lowdig,     /** 호미로 땅을 팔 수 있는 포인트 ...trig_homiedig **/
+        Lowstack,   /** 호미로 땅을 쌓을 수 있는 포인트 ...trig_homiestack **/
+        Plant       /** 작물을 심을 수 있는 포인트 ...col_plant **/ 
     }
 
     // 변수                
@@ -34,6 +35,7 @@ public class TriggerGenerator : MonoBehaviour {
     public Material water_mat;
     public Material dig_mat;
     public Material lowdig_mat;
+    public Material lowstack_mat;
     public Material plant_mat;
 
 
@@ -100,9 +102,16 @@ public class TriggerGenerator : MonoBehaviour {
                 effectValueY = addEffValueY;
                 break;
 
+            /** 작은 삽질 쌓기 기능 **/
+            case GeneratorPointTypes.Lowstack:
+                ChangeTypeSettingModule("trig_homiestack", 0, GeneratorPointTypes.Lowstack, lowstack_mat, true);
+                effectCount = addCount;
+                effectValueY = addEffValueY;
+                break;
+
             /** 심기 가능 **/
             case GeneratorPointTypes.Plant:
-                ChangeTypeSettingModule("col_plant", 0, GeneratorPointTypes.Plant, plant_mat, false);
+                ChangeTypeSettingModule("col_plant", 10, GeneratorPointTypes.Plant, plant_mat, false);
                 effectCount = addCount;
                 effectValueY = 0.0f;
                 break;
@@ -148,6 +157,7 @@ public class TriggerGenerator : MonoBehaviour {
 
             case GeneratorPointTypes.Dig: break;
             case GeneratorPointTypes.Lowdig: break;
+            case GeneratorPointTypes.Lowstack: break;
             case GeneratorPointTypes.Plant: break;
 
         }
@@ -183,18 +193,43 @@ public class TriggerGenerator : MonoBehaviour {
         if (type != triggerType) return;
 
         switch (type) {
+
             case GeneratorPointTypes.Normal : break;
+
+
             case GeneratorPointTypes.Soil: break;
 
-            /** effectValueY 수치만큼 땅 파기 **/
+
+            /** 일반삽 :: effectValueY 수치만큼 땅 파기 **/
             case GeneratorPointTypes.Dig:
                 SetTransformY(effectValueY, true);
+                effectCount--;
+                if (effectCount <= 0) ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                break;
+
+
+            /** 호미삽 :: effectValueY 수치만큼 땅 파기 **/ 
+            case GeneratorPointTypes.Lowdig:
+                SetTransformY(effectValueY, true);
+                effectCount--;
+                if (effectCount <= 0) ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                break;
+
+
+            /** 호미삽 :: effectValueY 수치만큼 땅 쌓기 **/
+            case GeneratorPointTypes.Lowstack:
+                SetTransformY(effectValueY, true);
+                effectCount--;
+                if (effectCount <= 0) ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
+                break;
+
+
+            /** 식물 :: 식물 심기 **/
+            case GeneratorPointTypes.Plant:
                 effectCount--;
                 if (effectCount <= 0)
                     ChangeType(GeneratorPointTypes.Normal, 0, 0.0f);
                 break;
-            case GeneratorPointTypes.Lowdig: break;
-            case GeneratorPointTypes.Plant: break;
         }
     }
 

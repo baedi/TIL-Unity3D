@@ -63,6 +63,9 @@ public class MT_Potato : MeshType {
         triggerObj[93].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
         triggerObj[94].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
         triggerObj[95].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Water, 5, 0.0f);
+        triggerObj[96].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Plant, 1, 0);
+        triggerObj[123].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Lowdig, 20, -0.05f);
+        triggerObj[124].GetComponent<TriggerGenerator>().ChangeType(TriggerGenerator.GeneratorPointTypes.Lowstack, 20, 0.05f);
 
         meshGenerator.UpdateMeshInfo();
     }
