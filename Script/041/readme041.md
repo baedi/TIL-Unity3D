@@ -5,7 +5,7 @@
 	- SoundSettings.cs : 사운드, 배경음악 관련 스크롤바, 텍스트 연출, 음량 조절 이벤트 관리 스크립트
 	- SoundManager.cs : 사운드 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
 	- MusicManager.cs : 배경음악 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
-
+	- VolumeScrollbarPointerEvent.cs : 볼륨 조절 스크롤바 전용, 스크롤바에서 뗄 경우  OnPointerUp 이벤트를 발생시키는 스크립트
 
 #### 변수 및 메소드 소개
 	- [SoundSettings.cs]
@@ -68,3 +68,10 @@
 		- musicScrollbarObj의 스크롤바 값을 설정 및 오디오 볼륨을 설정함. 만약 해당 오브젝트가 없다면 볼륨만 설정함.
 	- void SetMusicVolume(float volume) : 파라미터 값을 이용하여 오디오 볼륨을 설정함.
 	- void SetMusicVolume(GameObject scrollObj) : 파라미터 값의 <Scrollbar> 컴포넌트를 가져와서 해당 스크롤바의 값으로 오디오 볼륨을 설정함.
+
+
+
+	- [VolumeScrollbarPointerEvent.cs] (참고용)
+	- *** 메소드
+	- void OnPointerUp(PointerEventData eventData) : 스크롤바 클릭 중 뗄 경우 호출. 볼륨 저장 및 코루틴 함수 동작시킴.
+	- IEnumerator FlashingEffect( ) : OnPointerUp이 제대로 수행되어 저장되었는지 확인을 위한 용도. (텍스트가 초록색으로 일정 시간 점멸 발생)
