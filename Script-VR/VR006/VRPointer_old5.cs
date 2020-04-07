@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VRPointer : MonoBehaviour {
+public class VRPointer_old5 : MonoBehaviour {
 
     // 변수           
     private LineRenderer lineRendererComp;
@@ -122,13 +121,12 @@ public class VRPointer : MonoBehaviour {
 
     // 스크롤 바 감지         
     private void ScrollbarRayProcess() {
-
         // 클릭 Down          
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             raycastHit.collider.gameObject.GetComponent<Scrollbar>().OnSelect(null);
 
-        // 클릭 중            
-        else if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) {
+        // 클릭 Up            
+        else if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKey(KeyCode.E)) {
             Scrollbar temp = raycastHit.collider.gameObject.GetComponent<Scrollbar>();
 
             if (temp.interactable == true) {
@@ -141,19 +139,6 @@ public class VRPointer : MonoBehaviour {
 
             }
 
-        }
-
-        // 클릭 UP                
-        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyUp(KeyCode.Z)) {
-            Scrollbar temp = raycastHit.collider.gameObject.GetComponent<Scrollbar>();
-
-            if (temp.interactable == true) {
-                PointerEventData pointerEventData = new PointerEventData(null);
-                pointerEventData.position = new Vector2(raycastHit.point.x, raycastHit.point.y);
-
-                try { temp.GetComponent<VolumeScrollbarPointerEvent>().OnPointerUp(pointerEventData); }
-                catch (Exception) { }
-            }
         }
 
         else
