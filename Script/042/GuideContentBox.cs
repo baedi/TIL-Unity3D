@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuideContentBox : MonoBehaviour {
+public class GuideContentBox {
     
     // 프로퍼티         
     public string TextBlock { get; private set; }
