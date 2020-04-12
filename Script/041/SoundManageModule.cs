@@ -9,8 +9,10 @@ using UnityEngine;
 public class SoundManageModule : MonoBehaviour {
 
     // 변수                
-    public GameObject mainManager;  /** 메인 매니저 오브젝트 **/
-    public AudioClip sound;         /** 사운드 파일 **/
+    public GameObject mainManager;          /** 메인 매니저 오브젝트 **/
+    public AudioClip sound;                 /** 사운드 파일 **/
+    public AudioSource AudioSourceComp{
+        get; private set; }
 
     // 초기화              
     private void Start() {
@@ -24,8 +26,21 @@ public class SoundManageModule : MonoBehaviour {
         if (volumes[1] == -0.1f) volumes[1] = 0.8f;
 
         /** 사운드 설정 **/
-        GetComponent<AudioSource>().volume = volumes[1];
+        AudioSourceComp = GetComponent<AudioSource>();
+        AudioSourceComp.playOnAwake = false;
+        AudioSourceComp.spatialBlend = 1f;
+        AudioSourceComp.clip = sound;
+        AudioSourceComp.volume = volumes[1];
+
+        Start2();
     }
 
+    public virtual void Start2() { }
+
+
+    // 볼륨 값 변경          
+    public void ChangeVolume(float volume) {
+        AudioSourceComp.volume = volume;
+    }
 
 }

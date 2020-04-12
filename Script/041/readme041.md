@@ -6,6 +6,7 @@
 	- SoundManager.cs : 사운드 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
 	- MusicManager.cs : 배경음악 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
 	- VolumeScrollbarPointerEvent.cs : 볼륨 조절 스크롤바 전용, 스크롤바에서 뗄 경우  OnPointerUp 이벤트를 발생시키는 스크립트
+	- SoundManageModule.cs : 원하는 사운드를 넣고 외부 스크립트를 이용하여 조절하기 위한 (부모) 스크립트
 
 #### 변수 및 메소드 소개
 	- [SoundSettings.cs]
@@ -75,3 +76,15 @@
 	- *** 메소드
 	- void OnPointerUp(PointerEventData eventData) : 스크롤바 클릭 중 뗄 경우 호출. 볼륨 저장 및 코루틴 함수 동작시킴.
 	- IEnumerator FlashingEffect( ) : OnPointerUp이 제대로 수행되어 저장되었는지 확인을 위한 용도. (텍스트가 초록색으로 일정 시간 점멸 발생)
+
+
+	- [SoundManageModule.cs]
+	- *** 변수, 프로퍼티
+	- GameObject mainManager : 메인 매니저 오브젝트 (DatabaseManager 컴포넌트를 가져오기 위함)
+	- AudioClip sound : 사운드 파일
+	- AudioSource AudioSourceComp : AudioSource 컴포넌트 넣는곳
+
+	- *** 메소드
+	- void Start( ) : AudioSource 컴포넌트 생성 및 사운드 설정 초기화 작업을 수행함
+	- void Start2( ) : Start( ) 이후 호출되는 메소드. (오버라이드용 메소드)
+	- void ChangeVolume(float) : 볼륨 값을 조절해 주는 메소드 (외부 호출용)
