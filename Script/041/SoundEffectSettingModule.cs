@@ -25,23 +25,35 @@ public class SoundEffectSettingModule : SoundManageModule {
 
     // 트리거 진입 사운드   
     private void OnTriggerEnter(Collider other) {
-        if(triggerEnterON) AudioSourceComp.Play();
+        if (triggerEnterON) {
+            PrepareAudioPlay();
+            AudioSourceComp.Play();
+        }
     }
 
     // 트리거 탈출 사운드   
     private void OnTriggerExit(Collider other){
-        if(triggerExitON) AudioSourceComp.Play();
+        if(triggerExitON) {
+            PrepareAudioPlay();
+            AudioSourceComp.Play();
+        }
     }
 
     // 충돌 진입 사운드     
     private void OnCollisionEnter(Collision collision) {
-        if (collisionEnterON) AudioSourceComp.Play();
+        if (collisionEnterON) {
+            PrepareAudioPlay();
+            AudioSourceComp.Play();
+        }
     }
 
 
     // 충돌 탈출 사운드     
     private void OnCollisionExit(Collision collision) {
-        if(collisionExitON) AudioSourceComp.Play();
+        if(collisionExitON) {
+            PrepareAudioPlay();
+            AudioSourceComp.Play();
+        }
     }
 
     // 자연 사운드          
@@ -49,6 +61,7 @@ public class SoundEffectSettingModule : SoundManageModule {
 
         while (true) {
             yield return new WaitForSeconds(Random.Range(minNaturalDelay, maxNaturalDelay));
+            PrepareAudioPlay();
             AudioSourceComp.Play();
             yield return null;
         }
@@ -56,6 +69,16 @@ public class SoundEffectSettingModule : SoundManageModule {
 
 
     // 외부 호출 사운드     
-    public void PlaySound() { AudioSourceComp.Play(); }
+    public void PlaySound() {
+        PrepareAudioPlay();
+        AudioSourceComp.Play();
+    }
 
+
+    // 사운드 파일 수에 따라 난수를 이용하여 재생할 사운드 결정하기   
+    public void PrepareAudioPlay() {
+
+        int index = Random.Range(0, sound.Length);
+        AudioSourceComp.clip = sound[index];
+    }
 }
