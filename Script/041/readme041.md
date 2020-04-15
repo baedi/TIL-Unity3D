@@ -7,6 +7,7 @@
 	- MusicManager.cs : 배경음악 설정 및 볼륨, 스크롤바 볼륨 조절 관리 스크립트
 	- VolumeScrollbarPointerEvent.cs : 볼륨 조절 스크롤바 전용, 스크롤바에서 뗄 경우  OnPointerUp 이벤트를 발생시키는 스크립트
 	- SoundManageModule.cs : 원하는 사운드를 넣고 외부 스크립트를 이용하여 조절하기 위한 (부모) 스크립트
+	- SoundEffectSettingModule.cs : 특정 이벤트에 따라 선택적으로 효과음을 낼 수 있게 하는 (자식) 스크립트 (SoundManageModule.cs)
 
 #### 변수 및 메소드 소개
 	- [SoundSettings.cs]
@@ -88,3 +89,24 @@
 	- void Start( ) : AudioSource 컴포넌트 생성 및 사운드 설정 초기화 작업을 수행함
 	- void Start2( ) : Start( ) 이후 호출되는 메소드. (오버라이드용 메소드)
 	- void ChangeVolume(float) : 볼륨 값을 조절해 주는 메소드 (외부 호출용)
+
+
+
+	- [SoundEffectSettingModule.cs]
+	- ** 변수
+	- bool triggerEnterON : 트리거에 진입할 시 사운드 재생 여부
+	- bool triggerExitON : 트리거에 나갈 시 사운드 재생 여부
+	- bool collisionEnterON : 충돌 진입 시 사운드 재생 여부
+	- bool collisionExitON : 충돌 탈출 시 사운드 재생 여부
+	- bool naturalON : 일정 시간마다 자동으로 사운드 재생 여부
+	- float minNaturalDelay : (naturalON 전용) 사운드 재생 전 최소 딜레이
+	- fllat maxNaturalDelay : (naturalON 전용) 사운드 재생 전 최대 딜레이
+
+	- void Start2( ) : naturalON이 true일 경우 NaturalSound( ) 코루틴 동작
+	- void OnTriggerEnter(Collider) : 트리거 진입 이벤트. triggerEnterON이 true이면 사운드를 재생
+	- void OnTriggerExit(Collider) : 트리거 탈출 이벤트. triggerExitON이 true이면 사운드를 재생
+	- void OnCollisionEnter(Collision) : 충돌 진입 이벤트. collisionEnterON이 true이면 사운드를 재생
+	- void OnCollisionExit(Collision) : 충돌 탈출 이벤트. collisionExitON이 true이면 사운드를 재생
+	- IEnumerator NaturalSound( ) : 무한 반복되며, minNaturalDelay ~ maxNaturalDelay 사이에 난수를 발생시켜서 난수에 따라 딜레이 후 사운드를 재생함.
+	- void PlaySound( ) : 사운드를 재생시킴. (외부 호출용)
+ 	- void PrepareAudioPlay( ) : 사운드 파일 수에 따라 난수를 발생시켜 난수를 인덱스로 활용하여 랜덤으로 재생할 사운드를 결정해줌.
