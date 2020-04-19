@@ -1,8 +1,8 @@
-### 019. ChaserPlayer.cs
+### 019. 플레이어 따라다니기 & 시선 부드럽게 전환하기 테스트
 
  ![pet_image](./pet.PNG)
 
-
+### ChaserPlayer.cs
 #### 스크립트 설명
 	- 플레이어가 접근할 경우 플레이어 쪽으로 부드럽게 방향을 전환하면서 플레이어를 추적하는 스크립트
 	- 플레이어와 일정 이상 가까우면 움직임을 멈추는 스크립트
@@ -31,3 +31,15 @@
  - [특정 대상 바라보기2](https://mentum.tistory.com/227)
  - [Lerp를 이용한 부드러운 회전](http://devkorea.co.kr/bbs/board.php?bo_table=m03_qna&wr_id=59537)
  - [Lerp를 이용한 부드러운 이동](https://iygames.tistory.com/6)
+
+
+
+### PlayerFollow.cs
+#### 스크립트 설명
+	- 이 스크립트를 적용한 오브젝트는 target에서 지정한 오브젝트를 계속 따라다니게 됨.
+	- target이 바라보는 방향에 따라 1:1로 마주하도록 움직임.
+
+
+#### 사용 방법
+	1. UI 오브젝트에 이 스크립트를 적용한다.
+	2. 따라다닐 타깃 오브젝트를 지정한다. (ex : Player 오브젝트를 <PlayerFollow>컴포넌트의 target으로 드래그 앤 드롭)
