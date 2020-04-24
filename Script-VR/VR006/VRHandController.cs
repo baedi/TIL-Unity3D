@@ -16,6 +16,8 @@ public class VRHandController : MonoBehaviour {
     private Transform cameraTransform;
     private RaycastHit raycastHit;
     private GameObject raycastHitGameObject;
+    private GameObject tempObj;
+    private bool itemCatchMode = false;
 
 
     // 초기화              
@@ -29,6 +31,18 @@ public class VRHandController : MonoBehaviour {
 
     // 반복문              
     private void Update() {
+
+        /** 아이템 들기 관련 **/
+        if (itemCatchMode) {
+            if (!OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || 
+                tempObj.transform.parent == null) {
+                itemCatchMode = false;
+                CatchItemRelease();
+            }
+
+            else return;
+        }
+
 
         /** 충돌 감지 **/
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.blue, 0.5f);
@@ -58,12 +72,19 @@ public class VRHandController : MonoBehaviour {
 
             /** 감지된 물체가 CatchItem 태그를 가진 아이템일 때 트리거 버튼을 누른 상태면 옮기기 가능 **/
             else if (raycastHitGameObject.CompareTag("CatchItem") && 
-                (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKey(KeyCode.E))) {
-                raycastHitGameObject.transform.position = 
-                    Vector3.Lerp(raycastHitGameObject.transform.position, transform.position + (transform.forward * raycastDistance), 0.2f);
+                (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKey(KeyCode.E))) {
 
-                raycastHitGameObject.transform.rotation =
-                    new Quaternion(0, raycastHitGameObject.transform.rotation.y, 0, raycastHitGameObject.transform.rotation.w);
+                if (tempObj == null) {
+                    tempObj = raycastHitGameObject;
+                    tempObj.GetComponent<CatchItemManager>().CatchON();
+                    tempObj.GetComponent<Rigidbody>().isKinematic = true;
+                }
+
+                if(transform.childCount == 1) {
+                    tempObj.transform.parent = this.transform;
+                }
+
+                itemCatchMode = true;
             }
 
             else {
@@ -74,5 +95,13 @@ public class VRHandController : MonoBehaviour {
         else {
             raycastUICanvas.SetActive(false);
         }
+    }
+
+
+    private void CatchItemRelease() {
+        tempObj.GetComponent<Rigidbody>().isKinematic = false;
+        tempObj.GetComponent<CatchItemManager>().CatchOFF();
+        tempObj.transform.parent = null;
+        tempObj = null;
     }
 }
