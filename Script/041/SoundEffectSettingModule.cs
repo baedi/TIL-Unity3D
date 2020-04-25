@@ -74,11 +74,17 @@ public class SoundEffectSettingModule : SoundManageModule {
         AudioSourceComp.Play();
     }
 
+    // 외부 호출 사운드 (선택 가능)    
+    public void PlaySoundSelect(int index) {
+        AudioSourceComp.clip = sound[index];
+        AudioSourceComp.Play();
+    }
+
 
     // 사운드 파일 수에 따라 난수를 이용하여 재생할 사운드 결정하기   
     public void PrepareAudioPlay() {
 
-        int index = Random.Range(0, sound.Length);
+        int index = Random.Range(0, sound.Length); Debug.Log("Sound index : " + index);
         AudioSourceComp.clip = sound[index];
     }
 }

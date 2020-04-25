@@ -10,9 +10,11 @@ public class SoundManageModule : MonoBehaviour {
 
     // 변수                
     public GameObject mainManager;          /** 메인 매니저 오브젝트 **/
-    public AudioClip sound;                 /** 사운드 파일 **/
+    public AudioClip[] sound;               /** 사운드 파일 **/
     public AudioSource AudioSourceComp{
         get; private set; }
+    public bool is2DSound;
+
 
     // 초기화              
     private void Start() {
@@ -22,14 +24,14 @@ public class SoundManageModule : MonoBehaviour {
             this.gameObject.AddComponent<AudioSource>();
 
         /** 사운드 볼륨 설정 **/
+        if(mainManager == null) { mainManager = GameObject.Find("MainManager"); }
         float[] volumes = mainManager.GetComponent<DatabaseManager>().GetVolumeSettings();
         if (volumes[1] == -0.1f) volumes[1] = 0.8f;
 
         /** 사운드 설정 **/
         AudioSourceComp = GetComponent<AudioSource>();
         AudioSourceComp.playOnAwake = false;
-        AudioSourceComp.spatialBlend = 1f;
-        AudioSourceComp.clip = sound;
+        AudioSourceComp.spatialBlend = is2DSound ? 0.0f : 1.0f;
         AudioSourceComp.volume = volumes[1];
 
         Start2();
