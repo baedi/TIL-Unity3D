@@ -49,6 +49,7 @@
 - [040. 특정 씬 로드 시 로딩 씬을 거쳐서 처리하기 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/040/readme040.md)
 - [041. 사운드, 음악 관리 및 조절 테스트](https://github.com/baedi/TIL-Unity3D/blob/master/Script/041/readme041.md)
 - [043. 씬 내에서 특정 스크립트를 가진 오브젝트 불러오기](https://github.com/baedi/TIL_Unity3D/blob/master/Script/043/readme043.md)
+- [043. 유니티에서 C# 인터페이스 구현하기](https://github.com/baedi/TIL_Unity3D/blob/master/Script/044/readme044.md)
 -----------------------------------------
 
 ## 목록 (VR)

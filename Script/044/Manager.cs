@@ -9,13 +9,27 @@ public class Manager : MonoBehaviour {
 
 
     // Initialize   
-    void Start() {
-        
+    private void Start() {
+        i_test = new test1();
+
+        StartCoroutine(ChangeInterface());
+        StartCoroutine(Printing());
     }
 
-    // Update       
-    void Update()
-    {
-        
+    private IEnumerator ChangeInterface() {
+        while (true) {
+            yield return new WaitForSeconds(1);
+            i_test = new test1();
+
+            yield return new WaitForSeconds(1);
+            i_test = new test2();
+        }
+    }
+
+    private IEnumerator Printing() {
+        while (true) {
+            i_test.Effect();
+            yield return new WaitForSeconds(1);
+        }
     }
 }

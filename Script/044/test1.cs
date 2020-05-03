@@ -5,10 +5,11 @@ using UnityEngine;
 public class test1 : Itest {
     public void Effect() {
         Debug.Log("Effect1");
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void Print() {
-        throw new System.NotImplementedException();
+        Debug.Log("Print1");
+        //throw new System.NotImplementedException();
     }
 }
